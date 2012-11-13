@@ -1,11 +1,11 @@
-From 40683370968c21f72b2594954d88b13eb577cb90 Mon Sep 17 00:00:00 2001
+From 0434bdc003178aeaeeceb11e55d146496e06da2c Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Wed, 24 Oct 2012 09:54:37 +0300
 Subject: [PATCH 09/20] w1-gpio: Pinctrl-fy
 
 ---
  drivers/w1/masters/w1-gpio.c |    7 +++++++
- 1 files changed, 7 insertions(+), 0 deletions(-)
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/w1/masters/w1-gpio.c b/drivers/w1/masters/w1-gpio.c
 index 6012c4e..aec35bd 100644
@@ -35,5 +35,5 @@ index 6012c4e..aec35bd 100644
  	if (err < 0)
  		return err;
 -- 
-1.7.7.6
+1.7.9.5
 

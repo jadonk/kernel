@@ -1,4 +1,4 @@
-From 222baec7ff973b06b0ebe748d664097f4cef9a62 Mon Sep 17 00:00:00 2001
+From 08eb6a08f1079e27662c3de40aa6ac506c40e8bd Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Thu, 6 Sep 2012 17:40:42 -0400
 Subject: [PATCH 11/31] ARM: edma: add DT and runtime PM support for AM33XX
@@ -632,5 +632,5 @@ index 7396f0b3..b20b586 100644
  
  #endif
 -- 
-1.7.7.6
+1.7.9.5
 

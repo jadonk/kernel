@@ -1,4 +1,4 @@
-From ea7e5e670892fbd63b74e3760e02a8dd9f0b8df3 Mon Sep 17 00:00:00 2001
+From 2429f9f3be7caa1ba95ccdc5ef832797fdc34038 Mon Sep 17 00:00:00 2001
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Date: Tue, 23 Oct 2012 19:20:28 +0000
 Subject: [PATCH 19/20] f2fs: move proc files to debugfs
@@ -448,5 +448,5 @@ index 7f508b2..dc8045c 100644
  						   information */
  	struct mutex gc_mutex;			/* mutex for GC */
 -- 
-1.7.7.6
+1.7.9.5
 

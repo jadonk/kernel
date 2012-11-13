@@ -1,4 +1,4 @@
-From 5f127841ae0eb8945d6fdc2fd53fb85ff8206aae Mon Sep 17 00:00:00 2001
+From f196d0f61edda35d3398ecaa098172d9b1728b3d Mon Sep 17 00:00:00 2001
 From: "AnilKumar, Chimata" <anilkumar@ti.com>
 Date: Mon, 15 Oct 2012 12:15:58 +0000
 Subject: [PATCH 02/31] regulator: tps65910: fix BUG_ON() shown with vrtc
@@ -13,7 +13,7 @@ the voltage table information to fix the issue.
 Signed-off-by: AnilKumar Ch <anilkumar@ti.com>
 ---
  drivers/regulator/tps65910-regulator.c |    7 +++++++
- 1 files changed, 7 insertions(+), 0 deletions(-)
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/regulator/tps65910-regulator.c b/drivers/regulator/tps65910-regulator.c
 index 793adda..1d2dd18 100644
@@ -41,5 +41,5 @@ index 793adda..1d2dd18 100644
  	},
  	{
 -- 
-1.7.7.6
+1.7.9.5
 

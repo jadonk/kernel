@@ -1,4 +1,4 @@
-From d11ff01d586be7587fea2ca9e42389e978471774 Mon Sep 17 00:00:00 2001
+From 664899dc7baf7e03ce5d1bab7fd6e4b26188eca7 Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Wed, 17 Oct 2012 16:13:17 -0400
 Subject: [PATCH 12/31] ARM: edma: add AM33XX crossbar event support
@@ -10,7 +10,7 @@ Signed-off-by: Matt Porter <mporter@ti.com>
 ---
  arch/arm/common/edma.c             |   63 +++++++++++++++++++++++++++++++++++-
  include/linux/platform_data/edma.h |    1 +
- 2 files changed, 63 insertions(+), 1 deletions(-)
+ 2 files changed, 63 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm/common/edma.c b/arch/arm/common/edma.c
 index 6d2a590..b761b7a 100644
@@ -127,5 +127,5 @@ index b20b586..888a3c6 100644
  	s8	(*queue_priority_mapping)[2];
  };
 -- 
-1.7.7.6
+1.7.9.5
 

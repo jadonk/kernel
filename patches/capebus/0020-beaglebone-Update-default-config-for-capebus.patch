@@ -1,11 +1,11 @@
-From 021eb1e8d5120c8eb8186443a0d61b17eaaa49c2 Mon Sep 17 00:00:00 2001
+From 054167d6cdf2d4b655de7a89ae975b16c1e2bc9c Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Tue, 30 Oct 2012 21:17:39 +0200
 Subject: [PATCH 20/20] beaglebone: Update default config for capebus
 
 ---
  defconfig | 3893 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 3893 insertions(+), 0 deletions(-)
+ 1 file changed, 3893 insertions(+)
  create mode 100644 defconfig
 
 diff --git a/defconfig b/defconfig
@@ -3908,5 +3908,5 @@ index 0000000..ee51fa1
 +CONFIG_MPILIB=m
 +CONFIG_OID_REGISTRY=m
 -- 
-1.7.7.6
+1.7.9.5
 

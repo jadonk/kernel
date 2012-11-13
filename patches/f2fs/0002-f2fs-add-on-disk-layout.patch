@@ -1,4 +1,4 @@
-From 4eb35ba6eae571a32019d7fd8668b10e78b708c5 Mon Sep 17 00:00:00 2001
+From bafa25d1d58f5db0d9c50e9fe5321983c174cf54 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:26:00 +0000
 Subject: [PATCH 02/20] f2fs: add on-disk layout
@@ -10,7 +10,7 @@ Signed-off-by: Chul Lee <chur.lee@samsung.com>
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  include/linux/f2fs_fs.h |  362 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 362 insertions(+), 0 deletions(-)
+ 1 file changed, 362 insertions(+)
  create mode 100644 include/linux/f2fs_fs.h
 
 diff --git a/include/linux/f2fs_fs.h b/include/linux/f2fs_fs.h
@@ -382,5 +382,5 @@ index 0000000..bd9c217
 +
 +#endif  /* _LINUX_F2FS_FS_H */
 -- 
-1.7.7.6
+1.7.9.5
 

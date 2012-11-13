@@ -1,4 +1,4 @@
-From 6f8c0766007e0ce5aad5b7676d74440f71589ced Mon Sep 17 00:00:00 2001
+From d6cc32ef394f2fac4a58a994ca48166b1d723edd Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Mon, 15 Oct 2012 10:17:43 -0400
 Subject: [PATCH 29/31] ARM: configs: working da850 edma dmaengine defconfig
@@ -6,7 +6,7 @@ Subject: [PATCH 29/31] ARM: configs: working da850 edma dmaengine defconfig
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
  arch/arm/configs/da8xx_omapl_defconfig | 1878 +++++++++++++++++++++++++++++++-
- 1 files changed, 1857 insertions(+), 21 deletions(-)
+ 1 file changed, 1857 insertions(+), 21 deletions(-)
 
 diff --git a/arch/arm/configs/da8xx_omapl_defconfig b/arch/arm/configs/da8xx_omapl_defconfig
 index 88ccde0..571445f 100644
@@ -2000,5 +2000,5 @@ index 88ccde0..571445f 100644
 +# CONFIG_CORDIC is not set
 +# CONFIG_DDR is not set
 -- 
-1.7.7.6
+1.7.9.5
 

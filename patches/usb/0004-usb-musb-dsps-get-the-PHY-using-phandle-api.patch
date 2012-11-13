@@ -1,4 +1,4 @@
-From 7114226df077b895f7cda5c8f76c1e13dee3bb58 Mon Sep 17 00:00:00 2001
+From 947674b2b8ef22b6c1c63c2eb24d8c1e9c4c9247 Mon Sep 17 00:00:00 2001
 From: Ravi Babu <ravibabu@ti.com>
 Date: Thu, 2 Aug 2012 16:13:32 +0530
 Subject: [PATCH 4/9] usb: musb: dsps: get the PHY using phandle api
@@ -11,7 +11,7 @@ Signed-off-by: Ravi Babu <ravibabu@ti.com>
 ---
  .../devicetree/bindings/usb/am33xx-usb.txt         |    5 +++++
  drivers/usb/musb/musb_dsps.c                       |    5 ++++-
- 2 files changed, 9 insertions(+), 1 deletions(-)
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/usb/am33xx-usb.txt b/Documentation/devicetree/bindings/usb/am33xx-usb.txt
 index ca8fa56..e2702df 100644
@@ -54,5 +54,5 @@ index ff5f112..6a14101 100644
  		return -ENODEV;
  
 -- 
-1.7.7.6
+1.7.9.5
 

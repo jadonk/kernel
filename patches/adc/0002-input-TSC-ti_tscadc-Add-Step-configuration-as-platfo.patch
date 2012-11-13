@@ -1,4 +1,4 @@
-From c9bfd63ddff6b86bbfa40285ce14f1c7b4e00ce5 Mon Sep 17 00:00:00 2001
+From 676ecab7680a4049a4cbdf3ea16e6a9b04b81649 Mon Sep 17 00:00:00 2001
 From: "Patil, Rachna" <rachna@ti.com>
 Date: Tue, 16 Oct 2012 07:25:39 +0000
 Subject: [PATCH 02/13] input: TSC: ti_tscadc: Add Step configuration as
@@ -137,5 +137,5 @@ index b10a527..ad442a3 100644
  
  #endif
 -- 
-1.7.7.6
+1.7.9.5
 

@@ -1,4 +1,4 @@
-From 82173913cf916837ecb879b60233a72802db99a6 Mon Sep 17 00:00:00 2001
+From 1dae8d289184ace21c130548518411485004f83f Mon Sep 17 00:00:00 2001
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Date: Tue, 23 Oct 2012 18:22:41 +0000
 Subject: [PATCH 18/20] f2fs: move statistics code into one file
@@ -15,7 +15,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  fs/f2fs/Makefile |    1 +
  fs/f2fs/debug.c  |  414 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
  fs/f2fs/f2fs.h   |   25 +++-
- fs/f2fs/gc.c     |  373 +------------------------------------------------
+ fs/f2fs/gc.c     |  373 +-----------------------------------------------
  fs/f2fs/super.c  |   21 +--
  5 files changed, 442 insertions(+), 392 deletions(-)
  create mode 100644 fs/f2fs/debug.c
@@ -966,5 +966,5 @@ index 8e608a0..65feb4b 100644
  	destroy_checkpoint_caches();
  	destroy_gc_caches();
 -- 
-1.7.7.6
+1.7.9.5
 

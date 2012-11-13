@@ -1,4 +1,4 @@
-From 46beca151c5f06e5431e117b0d603e3c13d2fd0d Mon Sep 17 00:00:00 2001
+From 8504d1092c24a956483217ec1695b7f007b86271 Mon Sep 17 00:00:00 2001
 From: Koen Kooi <koen@dominion.thruhere.net>
 Date: Wed, 24 Oct 2012 11:47:13 +0200
 Subject: [PATCH 14/20] beaglebone: enable emmc for bonelt
@@ -7,7 +7,7 @@ Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
 ---
  arch/arm/boot/dts/am335x-bone-common.dtsi |    1 +
  arch/arm/boot/dts/am335x-bonelt.dts       |   15 +++++++++++++++
- 2 files changed, 16 insertions(+), 0 deletions(-)
+ 2 files changed, 16 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
 index e674a19..99240a5 100644
@@ -48,5 +48,5 @@ index 03c875f..87257ac 100644
  	vmmc-supply = <&ldo3_reg>;
  	bus-width = <4>;
 -- 
-1.7.7.6
+1.7.9.5
 

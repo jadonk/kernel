@@ -1,4 +1,4 @@
-From cff74efca777e8ff0fb2a1432440fdbe21e1d4d0 Mon Sep 17 00:00:00 2001
+From 886b03f24e2850db512e6367a7e17d4eca543b57 Mon Sep 17 00:00:00 2001
 From: "Patil, Rachna" <rachna@ti.com>
 Date: Tue, 16 Oct 2012 07:25:43 +0000
 Subject: [PATCH 06/13] MFD: ti_tscadc: Add support for TI's TSC/ADC MFDevice
@@ -14,7 +14,7 @@ Signed-off-by: Patil, Rachna <rachna@ti.com>
  drivers/mfd/Makefile                 |    1 +
  drivers/mfd/ti_am335x_tscadc.c       |  250 ++++++++++++++++++++++++++++++++++
  include/linux/mfd/ti_am335x_tscadc.h |  137 +++++++++++++++++++
- 4 files changed, 399 insertions(+), 0 deletions(-)
+ 4 files changed, 399 insertions(+)
  create mode 100644 drivers/mfd/ti_am335x_tscadc.c
  create mode 100644 include/linux/mfd/ti_am335x_tscadc.h
 
@@ -452,5 +452,5 @@ index 0000000..b7232b1
 +
 +#endif
 -- 
-1.7.7.6
+1.7.9.5
 

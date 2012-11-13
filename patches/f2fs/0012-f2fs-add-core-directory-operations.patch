@@ -1,4 +1,4 @@
-From aa9240b34517a52d5d1ca3e77a0157d5716d3e0c Mon Sep 17 00:00:00 2001
+From 3989be5aaf0c29c04a3668b8b47f773c3effc31e Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:31:34 +0000
 Subject: [PATCH 12/20] f2fs: add core directory operations
@@ -9,7 +9,7 @@ Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/dir.c  |  657 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  fs/f2fs/hash.c |   98 +++++++++
- 2 files changed, 755 insertions(+), 0 deletions(-)
+ 2 files changed, 755 insertions(+)
  create mode 100644 fs/f2fs/dir.c
  create mode 100644 fs/f2fs/hash.c
 
@@ -781,5 +781,5 @@ index 0000000..098a196
 +	return f2fs_hash;
 +}
 -- 
-1.7.7.6
+1.7.9.5
 

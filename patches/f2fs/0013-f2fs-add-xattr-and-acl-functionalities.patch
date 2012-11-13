@@ -1,4 +1,4 @@
-From b6ad9232d4bb06b1cf423f9ab1b739b8961025e0 Mon Sep 17 00:00:00 2001
+From f2744095763e18d40c8ce9c0a21bf4919321e624 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:31:46 +0000
 Subject: [PATCH 13/20] f2fs: add xattr and acl functionalities
@@ -14,7 +14,7 @@ Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
  fs/f2fs/acl.h   |   57 +++++++
  fs/f2fs/xattr.c |  389 ++++++++++++++++++++++++++++++++++++++++++++++
  fs/f2fs/xattr.h |  145 +++++++++++++++++
- 4 files changed, 1056 insertions(+), 0 deletions(-)
+ 4 files changed, 1056 insertions(+)
  create mode 100644 fs/f2fs/acl.c
  create mode 100644 fs/f2fs/acl.h
  create mode 100644 fs/f2fs/xattr.c
@@ -1101,5 +1101,5 @@ index 0000000..29b0a08
 +
 +#endif /* __F2FS_XATTR_H__ */
 -- 
-1.7.7.6
+1.7.9.5
 

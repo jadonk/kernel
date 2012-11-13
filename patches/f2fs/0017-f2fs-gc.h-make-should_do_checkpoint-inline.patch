@@ -1,4 +1,4 @@
-From 981abaaab6f7d701451767d5e096bf526c7f5000 Mon Sep 17 00:00:00 2001
+From 134528bda9fac8a71c5cea94937c66e779755cb1 Mon Sep 17 00:00:00 2001
 From: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
 Date: Tue, 23 Oct 2012 18:21:46 +0000
 Subject: [PATCH 17/20] f2fs: gc.h: make should_do_checkpoint() inline
@@ -9,7 +9,7 @@ files can properly include gc.h.
 Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
  fs/f2fs/gc.h |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/fs/f2fs/gc.h b/fs/f2fs/gc.h
 index 29b345d..b70366f 100644
@@ -25,5 +25,5 @@ index 29b345d..b70366f 100644
  	unsigned int pages_per_sec = sbi->segs_per_sec *
  					(1 << sbi->log_blocks_per_seg);
 -- 
-1.7.7.6
+1.7.9.5
 

@@ -1,4 +1,4 @@
-From 9619460cdd245391db5538a496eba7d2c4060b27 Mon Sep 17 00:00:00 2001
+From 5493fdd5d24284dae93aecaae57567a9e4d80ccb Mon Sep 17 00:00:00 2001
 From: Ajay Kumar Gupta <ajay.gupta@ti.com>
 Date: Thu, 5 Jul 2012 14:35:06 +0530
 Subject: [PATCH 8/9] usb: musb: dsps: enable phy control for am335x
@@ -57,5 +57,5 @@ index 1151760..ed3b379 100644
  	}
  	__raw_writel(usbphycfg, glue->usb_ctrl[id]);
 -- 
-1.7.7.6
+1.7.9.5
 

@@ -1,4 +1,4 @@
-From 2c1e3b3f9b072746125a06a29884a0582ce29c01 Mon Sep 17 00:00:00 2001
+From 0e6aa55683f23a5c0cfdf1dd9e8ed8f056d471fa Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Wed, 17 Oct 2012 17:12:09 -0400
 Subject: [PATCH 24/31] Documentation: bindings: add spansion
@@ -6,7 +6,7 @@ Subject: [PATCH 24/31] Documentation: bindings: add spansion
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
  .../devicetree/bindings/vendor-prefixes.txt        |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+ 1 file changed, 1 insertion(+)
 
 diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
 index 54463a7..261b6d5 100644
@@ -21,5 +21,5 @@ index 54463a7..261b6d5 100644
  stericsson	ST-Ericsson
  ti	Texas Instruments
 -- 
-1.7.7.6
+1.7.9.5
 

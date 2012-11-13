@@ -1,4 +1,4 @@
-From 6e7117d51234d0aeff928a859244f303ae179fe0 Mon Sep 17 00:00:00 2001
+From 7bec576f4bd424c7b98485d27b7ebfeee4cd7f10 Mon Sep 17 00:00:00 2001
 From: Koen Kooi <koen@dominion.thruhere.net>
 Date: Wed, 24 Oct 2012 11:34:54 +0200
 Subject: [PATCH 20/20] f2fs: compile fix
@@ -6,7 +6,7 @@ Subject: [PATCH 20/20] f2fs: compile fix
 Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
 ---
  fs/f2fs/segment.c |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+ 1 file changed, 1 insertion(+)
 
 diff --git a/fs/f2fs/segment.c b/fs/f2fs/segment.c
 index 57d0931..5bab838 100644
@@ -21,5 +21,5 @@ index 57d0931..5bab838 100644
  #include "f2fs.h"
  #include "segment.h"
 -- 
-1.7.7.6
+1.7.9.5
 

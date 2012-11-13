@@ -1,11 +1,11 @@
-From 29095964bfbf9e0f41cd8256e0ebb9c394b08cb4 Mon Sep 17 00:00:00 2001
+From 4edf112e08898e4ab7ecde2849363f73778a0ea1 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Tue, 30 Oct 2012 21:16:57 +0200
 Subject: [PATCH 19/20] capebus: Beaglebone capebus DT update
 
 ---
  arch/arm/boot/dts/am335x-bone-common.dtsi |  689 +++++++++++++++++++++++++++--
- 1 files changed, 659 insertions(+), 30 deletions(-)
+ 1 file changed, 659 insertions(+), 30 deletions(-)
 
 diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
 index 99240a5..46d5f27 100644
@@ -744,5 +744,5 @@ index 99240a5..46d5f27 100644
 +	};
 +};
 -- 
-1.7.7.6
+1.7.9.5
 

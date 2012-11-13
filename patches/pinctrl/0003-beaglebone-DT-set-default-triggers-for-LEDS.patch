@@ -1,4 +1,4 @@
-From 47373e3ef33a57dfbf3fefbd866352b49ac468d2 Mon Sep 17 00:00:00 2001
+From 71b30aaa4cbade5002b7475ab073792e6a41e821 Mon Sep 17 00:00:00 2001
 From: Koen Kooi <koen@dominion.thruhere.net>
 Date: Wed, 5 Sep 2012 09:49:21 +0200
 Subject: [PATCH 3/4] beaglebone DT: set default triggers for LEDS
@@ -6,7 +6,7 @@ Subject: [PATCH 3/4] beaglebone DT: set default triggers for LEDS
 Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
 ---
  arch/arm/boot/dts/am335x-bone.dts |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+ 1 file changed, 2 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-bone.dts b/arch/arm/boot/dts/am335x-bone.dts
 index 3a089c0..63acfb4 100644
@@ -28,5 +28,5 @@ index 3a089c0..63acfb4 100644
  			};
  
 -- 
-1.7.7.6
+1.7.9.5
 

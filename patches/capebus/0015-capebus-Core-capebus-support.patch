@@ -1,4 +1,4 @@
-From 4bdde7d4ca2d4d5b698df273636a1a22dc28258a Mon Sep 17 00:00:00 2001
+From db8bbf5b6796579f35043cc5bb1fbbd2e1bb6c90 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Tue, 30 Oct 2012 21:06:06 +0200
 Subject: [PATCH 15/20] capebus: Core capebus support
@@ -6,13 +6,13 @@ Subject: [PATCH 15/20] capebus: Core capebus support
 ---
  drivers/Kconfig                  |    2 +
  drivers/Makefile                 |    3 +
- drivers/capebus/Kconfig          |   17 +
+ drivers/capebus/Kconfig          |   17 ++
  drivers/capebus/Makefile         |    8 +
  drivers/capebus/capebus-driver.c |  608 ++++++++++++++++++++++++++++++++++++++
  drivers/capebus/capebus-probe.c  |  320 ++++++++++++++++++++
  drivers/capebus/capebus-sysfs.c  |   52 ++++
  include/linux/capebus.h          |  298 +++++++++++++++++++
- 8 files changed, 1308 insertions(+), 0 deletions(-)
+ 8 files changed, 1308 insertions(+)
  create mode 100644 drivers/capebus/Kconfig
  create mode 100644 drivers/capebus/Makefile
  create mode 100644 drivers/capebus/capebus-driver.c
@@ -1382,5 +1382,5 @@ index 0000000..7524401
 +
 +#endif
 -- 
-1.7.7.6
+1.7.9.5
 

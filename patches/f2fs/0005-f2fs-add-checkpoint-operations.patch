@@ -1,4 +1,4 @@
-From df2df2798aae4e93570c0ef6847e811ef832601b Mon Sep 17 00:00:00 2001
+From 9554ffecf542461b157919517e27ca92de12c0f5 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:28:03 +0000
 Subject: [PATCH 05/20] f2fs: add checkpoint operations
@@ -28,7 +28,7 @@ Signed-off-by: Chul Lee <chur.lee@samsung.com>
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/checkpoint.c |  795 ++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 795 insertions(+), 0 deletions(-)
+ 1 file changed, 795 insertions(+)
  create mode 100644 fs/f2fs/checkpoint.c
 
 diff --git a/fs/f2fs/checkpoint.c b/fs/f2fs/checkpoint.c
@@ -833,5 +833,5 @@ index 0000000..a0601cc
 +	kmem_cache_destroy(inode_entry_slab);
 +}
 -- 
-1.7.7.6
+1.7.9.5
 

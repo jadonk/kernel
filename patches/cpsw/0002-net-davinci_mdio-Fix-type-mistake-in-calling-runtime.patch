@@ -1,4 +1,4 @@
-From 1a749a9810b38e4a67c9176debacffa68b305fd7 Mon Sep 17 00:00:00 2001
+From f3659a554e03984a157733b0f0cfdbde801d8436 Mon Sep 17 00:00:00 2001
 From: Vaibhav Hiremath <hvaibhav@ti.com>
 Date: Mon, 3 Sep 2012 21:14:52 +0530
 Subject: [PATCH 2/4] net: davinci_mdio: Fix type mistake in calling
@@ -18,7 +18,7 @@ Signed-off-by: Vaibhav Hiremath <hvaibhav@ti.com>
 Cc: Mugunthan V N <mugunthanvnm@ti.com>
 ---
  drivers/net/ethernet/ti/davinci_mdio.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/net/ethernet/ti/davinci_mdio.c b/drivers/net/ethernet/ti/davinci_mdio.c
 index 51a96db..ae74280 100644
@@ -34,5 +34,5 @@ index 51a96db..ae74280 100644
  	/* restart the scan state machine */
  	ctrl = __raw_readl(&data->regs->control);
 -- 
-1.7.7.6
+1.7.9.5
 

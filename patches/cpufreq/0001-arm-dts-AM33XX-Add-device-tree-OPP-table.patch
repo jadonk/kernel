@@ -1,4 +1,4 @@
-From 4b8eac1d244011791541dff88556d290d1831c70 Mon Sep 17 00:00:00 2001
+From 51e8a45c96b348dc776cad3a56805d18168531d3 Mon Sep 17 00:00:00 2001
 From: "AnilKumar, Chimata" <anilkumar@ti.com>
 Date: Fri, 31 Aug 2012 09:37:20 +0000
 Subject: [PATCH] arm/dts: AM33XX: Add device tree OPP table
@@ -15,7 +15,7 @@ Signed-off-by: AnilKumar Ch <anilkumar@ti.com>
  arch/arm/boot/dts/am335x-bone.dts |    6 ++++++
  arch/arm/boot/dts/am335x-evm.dts  |    6 ++++++
  arch/arm/boot/dts/am33xx.dtsi     |   15 +++++++++++++++
- 3 files changed, 27 insertions(+), 0 deletions(-)
+ 3 files changed, 27 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-bone.dts b/arch/arm/boot/dts/am335x-bone.dts
 index 147bc01..87686e9 100644
@@ -78,5 +78,5 @@ index a6bfd9b..9755276 100644
  	};
  
 -- 
-1.7.7.6
+1.7.9.5
 

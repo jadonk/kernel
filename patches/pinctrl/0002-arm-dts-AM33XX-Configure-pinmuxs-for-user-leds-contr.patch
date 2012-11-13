@@ -1,4 +1,4 @@
-From a9c21a7b740d0af1cd98f6b200584acaf037735b Mon Sep 17 00:00:00 2001
+From db24229776c3dc0ba611d13f550efad485654d71 Mon Sep 17 00:00:00 2001
 From: "AnilKumar, Chimata" <anilkumar@ti.com>
 Date: Fri, 31 Aug 2012 09:29:18 +0000
 Subject: [PATCH 2/4] arm/dts: AM33XX: Configure pinmuxs for user leds control
@@ -10,7 +10,7 @@ user leds (USR0, USR1, USR2 and USR3) present on BeagleBone.
 Signed-off-by: AnilKumar Ch <anilkumar@ti.com>
 ---
  arch/arm/boot/dts/am335x-bone.dts |   38 +++++++++++++++++++++++++++++++++++++
- 1 files changed, 38 insertions(+), 0 deletions(-)
+ 1 file changed, 38 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-bone.dts b/arch/arm/boot/dts/am335x-bone.dts
 index 47c17e8..3a089c0 100644
@@ -69,5 +69,5 @@ index 47c17e8..3a089c0 100644
  			status = "okay";
  			clock-frequency = <400000>;
 -- 
-1.7.7.6
+1.7.9.5
 

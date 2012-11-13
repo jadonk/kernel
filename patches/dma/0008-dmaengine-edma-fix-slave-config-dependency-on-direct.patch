@@ -1,4 +1,4 @@
-From a04b1f763c56026c4b900e5e850c0819bf6a2bc0 Mon Sep 17 00:00:00 2001
+From aaea16f6ba7961ff64794da8b669378c8e4884a0 Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Tue, 18 Sep 2012 18:57:15 +0000
 Subject: [PATCH 08/31] dmaengine: edma: fix slave config dependency on
@@ -17,8 +17,8 @@ direction field.
 
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
- drivers/dma/edma.c |   55 +++++++++++++++++++++++++--------------------------
- 1 files changed, 27 insertions(+), 28 deletions(-)
+ drivers/dma/edma.c |   55 ++++++++++++++++++++++++++--------------------------
+ 1 file changed, 27 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/dma/edma.c b/drivers/dma/edma.c
 index 05aea3c..fdcf079 100644
@@ -144,5 +144,5 @@ index 05aea3c..fdcf079 100644
  			src_bidx = 0;
  			src_cidx = 0;
 -- 
-1.7.7.6
+1.7.9.5
 

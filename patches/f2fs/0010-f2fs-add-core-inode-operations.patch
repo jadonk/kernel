@@ -1,4 +1,4 @@
-From 3fd0a131898519ddac4f50725a9904e8b13652b7 Mon Sep 17 00:00:00 2001
+From 3c1662606c1884e07fb205e8ceb35c6b33374804 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:30:16 +0000
 Subject: [PATCH 10/20] f2fs: add core inode operations
@@ -9,7 +9,7 @@ Signed-off-by: Changman Lee <cm224.lee@samsung.com>
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/inode.c |  262 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 262 insertions(+), 0 deletions(-)
+ 1 file changed, 262 insertions(+)
  create mode 100644 fs/f2fs/inode.c
 
 diff --git a/fs/f2fs/inode.c b/fs/f2fs/inode.c
@@ -281,5 +281,5 @@ index 0000000..0cf61da
 +	clear_inode(inode);
 +}
 -- 
-1.7.7.6
+1.7.9.5
 

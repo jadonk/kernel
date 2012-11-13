@@ -1,4 +1,4 @@
-From ff7135bba405a2f9a459306bbe453e2ade28ec47 Mon Sep 17 00:00:00 2001
+From 6612bb6507f631e65f1435f4b384017725156a97 Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Thu, 11 Oct 2012 08:51:46 -0400
 Subject: [PATCH 23/31] ARM: dts: add AM33XX SPI support
@@ -7,10 +7,10 @@ Adds AM33XX SPI support for am335x-bone and am335x-evm.
 
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
- arch/arm/boot/dts/am335x-bone.dts |   17 ++++++++++++++
- arch/arm/boot/dts/am335x-evm.dts  |    9 +++++++
+ arch/arm/boot/dts/am335x-bone.dts |   17 +++++++++++++++
+ arch/arm/boot/dts/am335x-evm.dts  |    9 ++++++++
  arch/arm/boot/dts/am33xx.dtsi     |   43 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 69 insertions(+), 0 deletions(-)
+ 3 files changed, 69 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-bone.dts b/arch/arm/boot/dts/am335x-bone.dts
 index 5510979..23edfd8 100644
@@ -123,5 +123,5 @@ index 26a6af7..063ecea 100644
  			compatible = "ti,omap3-wdt";
  			ti,hwmods = "wd_timer2";
 -- 
-1.7.7.6
+1.7.9.5
 

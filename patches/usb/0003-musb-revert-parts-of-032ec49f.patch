@@ -1,4 +1,4 @@
-From 9fdf7ae452132c069533fdb044b858df51b1d01f Mon Sep 17 00:00:00 2001
+From 79661bbb551d56d26f40b27e80d31bc10376e8bd Mon Sep 17 00:00:00 2001
 From: Daniel Mack <zonque@gmail.com>
 Date: Wed, 17 Oct 2012 15:34:24 +0200
 Subject: [PATCH 3/9] musb: revert parts of 032ec49f
@@ -370,5 +370,5 @@ index c158aac..290e411 100644
  
  	u8			min_power;	/* vbus for periph, in mA/2 */
 -- 
-1.7.7.6
+1.7.9.5
 

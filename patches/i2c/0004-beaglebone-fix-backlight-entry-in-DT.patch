@@ -1,4 +1,4 @@
-From 4a4057c17f86e67aceb4e6c03b4a37b497810a85 Mon Sep 17 00:00:00 2001
+From 3d9fb8e689d24439fb76f7ff6028146a211deb9d Mon Sep 17 00:00:00 2001
 From: Koen Kooi <koen@dominion.thruhere.net>
 Date: Tue, 18 Sep 2012 11:23:47 +0200
 Subject: [PATCH 4/4] beaglebone: fix backlight entry in DT
@@ -6,7 +6,7 @@ Subject: [PATCH 4/4] beaglebone: fix backlight entry in DT
 Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
 ---
  arch/arm/boot/dts/am335x-bone.dts |    8 ++++++++
- 1 files changed, 8 insertions(+), 0 deletions(-)
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-bone.dts b/arch/arm/boot/dts/am335x-bone.dts
 index 1daf1af..667842d 100644
@@ -28,5 +28,5 @@ index 1daf1af..667842d 100644
  
  &i2c0 {
 -- 
-1.7.7.6
+1.7.9.5
 

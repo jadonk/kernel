@@ -1,4 +1,4 @@
-From 61223d5e92d0c00f2cd32da98e20c3e0bb8d564f Mon Sep 17 00:00:00 2001
+From b97405d9139cabbee41167f6070846fdd99a9945 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Sat, 13 Oct 2012 16:34:44 +0300
 Subject: [PATCH 02/20] omap: Export
@@ -70,5 +70,5 @@ index 7a7d1f2..a15b715 100644
  /**
   * omap_early_device_register - register an omap_device as an early platform
 -- 
-1.7.7.6
+1.7.9.5
 

@@ -1,4 +1,4 @@
-From 488830bfbf05f99b3dfc798fffe0f1ed882af131 Mon Sep 17 00:00:00 2001
+From fef8a0778bd5e7f89f298c7f5e14af16aafb12a4 Mon Sep 17 00:00:00 2001
 From: "Philip, Avinash" <avinashphilip@ti.com>
 Date: Tue, 22 May 2012 11:34:58 +0530
 Subject: [PATCH 4/9] Control module : EHRPWM clk enabling
@@ -6,7 +6,7 @@ Subject: [PATCH 4/9] Control module : EHRPWM clk enabling
 Signed-off-by: Philip, Avinash <avinashphilip@ti.com>
 ---
  arch/arm/mach-omap2/devices.c |   15 +++++++++++++++
- 1 files changed, 15 insertions(+), 0 deletions(-)
+ 1 file changed, 15 insertions(+)
 
 diff --git a/arch/arm/mach-omap2/devices.c b/arch/arm/mach-omap2/devices.c
 index cba60e0..5a5f2d5 100644
@@ -42,5 +42,5 @@ index cba60e0..5a5f2d5 100644
  }
  arch_initcall(omap2_init_devices);
 -- 
-1.7.7.6
+1.7.9.5
 

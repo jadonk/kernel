@@ -1,4 +1,4 @@
-From fc53be2cb9057af9955463cb9067255339c0caf7 Mon Sep 17 00:00:00 2001
+From 7d4b59f33c9f5e89acd67fad7b124268ce3f69df Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Thu, 20 Sep 2012 07:46:04 -0400
 Subject: [PATCH 14/31] dmaengine: edma: Add TI EDMA device tree binding
@@ -9,7 +9,7 @@ binding.
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
  Documentation/devicetree/bindings/dma/ti-edma.txt |   51 +++++++++++++++++++++
- 1 files changed, 51 insertions(+), 0 deletions(-)
+ 1 file changed, 51 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/dma/ti-edma.txt
 
 diff --git a/Documentation/devicetree/bindings/dma/ti-edma.txt b/Documentation/devicetree/bindings/dma/ti-edma.txt
@@ -70,5 +70,5 @@ index 0000000..3344345
 +				  2 13>;
 +};
 -- 
-1.7.7.6
+1.7.9.5
 

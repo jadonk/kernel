@@ -1,4 +1,4 @@
-From c120428d2eba0a26c89cf0eb1018aff1bb550615 Mon Sep 17 00:00:00 2001
+From 18be5a7661454a88de1fbd04f1997a8883fa6d68 Mon Sep 17 00:00:00 2001
 From: Vaibhav Hiremath <hvaibhav@ti.com>
 Date: Fri, 19 Oct 2012 02:01:39 +0530
 Subject: [PATCH] ARM: AM33XX: hwmod: Remove wrong INIT_NO_RESET/IDLE flags
@@ -7,7 +7,7 @@ Subject: [PATCH] ARM: AM33XX: hwmod: Remove wrong INIT_NO_RESET/IDLE flags
 Signed-off-by: Vaibhav Hiremath <hvaibhav@ti.com>
 ---
  arch/arm/mach-omap2/omap_hwmod_33xx_data.c |    3 +--
- 1 files changed, 1 insertions(+), 2 deletions(-)
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/arch/arm/mach-omap2/omap_hwmod_33xx_data.c b/arch/arm/mach-omap2/omap_hwmod_33xx_data.c
 index 2a5032f..76531f9 100644
@@ -24,5 +24,5 @@ index 2a5032f..76531f9 100644
  
  /*
 -- 
-1.7.7.6
+1.7.9.5
 

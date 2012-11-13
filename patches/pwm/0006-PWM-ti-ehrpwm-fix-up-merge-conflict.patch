@@ -1,4 +1,4 @@
-From 5ed81ee9c145a69e898f2a1a73188b9af8d33b31 Mon Sep 17 00:00:00 2001
+From f3caa8e8a2b3166f6c6244a775fc321a61661078 Mon Sep 17 00:00:00 2001
 From: Koen Kooi <koen@dominion.thruhere.net>
 Date: Mon, 17 Sep 2012 10:34:22 +0200
 Subject: [PATCH 6/9] PWM: ti-ehrpwm: fix up merge conflict
@@ -6,7 +6,7 @@ Subject: [PATCH 6/9] PWM: ti-ehrpwm: fix up merge conflict
 Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
 ---
  drivers/pwm/pwm-tiehrpwm.c |    1 +
- 1 files changed, 1 insertions(+), 0 deletions(-)
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/pwm/pwm-tiehrpwm.c b/drivers/pwm/pwm-tiehrpwm.c
 index d3c1dff..288f93e 100644
@@ -21,5 +21,5 @@ index d3c1dff..288f93e 100644
  	enum pwm_polarity polarity[NUM_PWM_CHANNEL];
  };
 -- 
-1.7.7.6
+1.7.9.5
 

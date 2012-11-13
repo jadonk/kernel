@@ -1,4 +1,4 @@
-From c0a5285032bd78f051145c12aa17eae0b76367fe Mon Sep 17 00:00:00 2001
+From 9553620bb732b907cfd4383db2238c138342b492 Mon Sep 17 00:00:00 2001
 From: "Philip, Avinash" <avinashphilip@ti.com>
 Date: Tue, 24 Jul 2012 14:58:09 +0530
 Subject: [PATCH 5/9] pwm: pwm-tiecap: Enable clock gating
@@ -9,9 +9,9 @@ leave it enabled if config space node is present.
 
 Signed-off-by: Philip, Avinash <avinashphilip@ti.com>
 ---
- Documentation/devicetree/bindings/pwm/ecap-pwm.txt |   12 ++++++
+ Documentation/devicetree/bindings/pwm/ecap-pwm.txt |   12 +++++++
  drivers/pwm/pwm-tiecap.c                           |   37 +++++++++++++++++++-
- 2 files changed, 48 insertions(+), 1 deletions(-)
+ 2 files changed, 48 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/pwm/ecap-pwm.txt b/Documentation/devicetree/bindings/pwm/ecap-pwm.txt
 index fa56534..7d83587 100644
@@ -101,5 +101,5 @@ index d15941c..5b07707 100644
  	return 0;
  }
 -- 
-1.7.7.6
+1.7.9.5
 

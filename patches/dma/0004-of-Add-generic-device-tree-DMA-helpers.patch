@@ -1,4 +1,4 @@
-From 6580bd9e8ad92f9a26d6bcd024321865959263e5 Mon Sep 17 00:00:00 2001
+From fcd2cda424b145b38ca95b4bff190eb2ad7306d1 Mon Sep 17 00:00:00 2001
 From: Jon Hunter <jon-hunter@ti.com>
 Date: Fri, 14 Sep 2012 17:41:56 -0500
 Subject: [PATCH 04/31] of: Add generic device tree DMA helpers
@@ -153,7 +153,7 @@ Signed-off-by: Vinod Koul <vinod.koul@linux.intel.com>
  drivers/of/Makefile                           |    2 +-
  drivers/of/dma.c                              |  219 +++++++++++++++++++++++++
  include/linux/of_dma.h                        |   45 +++++
- 4 files changed, 346 insertions(+), 1 deletions(-)
+ 4 files changed, 346 insertions(+), 1 deletion(-)
  create mode 100644 Documentation/devicetree/bindings/dma/dma.txt
  create mode 100644 drivers/of/dma.c
  create mode 100644 include/linux/of_dma.h
@@ -532,5 +532,5 @@ index 0000000..337823d
 +
 +#endif /* __LINUX_OF_DMA_H */
 -- 
-1.7.7.6
+1.7.9.5
 

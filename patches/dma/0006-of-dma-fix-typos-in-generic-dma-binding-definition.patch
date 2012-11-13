@@ -1,4 +1,4 @@
-From a629163e0e7a817540f5db21e796ac074846b745 Mon Sep 17 00:00:00 2001
+From 350707e78bf4e983d92efacc96765c03dd863384 Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Wed, 19 Sep 2012 10:49:48 -0400
 Subject: [PATCH 06/31] of: dma: fix typos in generic dma binding definition
@@ -15,7 +15,7 @@ Acked-by: Jon Hunter <jon-hunter@ti.com>
 Signed-off-by: Vinod Koul <vinod.koul@linux.intel.com>
 ---
  Documentation/devicetree/bindings/dma/dma.txt |   14 +++++++-------
- 1 files changed, 7 insertions(+), 7 deletions(-)
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/dma/dma.txt b/Documentation/devicetree/bindings/dma/dma.txt
 index a4f59a5..8f504e6 100644
@@ -68,5 +68,5 @@ index a4f59a5..8f504e6 100644
  3. A device with three channels, one of which has two alternatives:
  
 -- 
-1.7.7.6
+1.7.9.5
 

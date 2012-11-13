@@ -1,4 +1,4 @@
-From 1c8b931d8fbc72bdd2f365ca39e07be23485cde8 Mon Sep 17 00:00:00 2001
+From 30fab61e088f441cc0c245af0b9d79b4f4bbd32e Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Thu, 11 Oct 2012 08:52:54 -0400
 Subject: [PATCH 25/31] ARM: dts: add BeagleBone Adafruit 1.8 LCD support
@@ -6,7 +6,7 @@ Subject: [PATCH 25/31] ARM: dts: add BeagleBone Adafruit 1.8 LCD support
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
  arch/arm/boot/dts/am335x-bone.dts |   18 ++++++++++++++++++
- 1 files changed, 18 insertions(+), 0 deletions(-)
+ 1 file changed, 18 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-bone.dts b/arch/arm/boot/dts/am335x-bone.dts
 index 23edfd8..290408c 100644
@@ -43,5 +43,5 @@ index 23edfd8..290408c 100644
 +	};
  };
 -- 
-1.7.7.6
+1.7.9.5
 

@@ -1,4 +1,4 @@
-From f018aa30eea06a1eaa67b8022e1c5eadf34c15c0 Mon Sep 17 00:00:00 2001
+From 6dde53854101de84355cbfd709a5bffb2fe30b15 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:25:11 +0000
 Subject: [PATCH 01/20] f2fs: add document
@@ -10,7 +10,7 @@ Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  Documentation/filesystems/00-INDEX |    2 +
  Documentation/filesystems/f2fs.txt |  404 ++++++++++++++++++++++++++++++++++++
- 2 files changed, 406 insertions(+), 0 deletions(-)
+ 2 files changed, 406 insertions(+)
  create mode 100644 Documentation/filesystems/f2fs.txt
 
 diff --git a/Documentation/filesystems/00-INDEX b/Documentation/filesystems/00-INDEX
@@ -437,5 +437,5 @@ index 0000000..f2b4fde
 +F2FS manages a bitmap. Each bit represents the validity of a block, and the
 +bitmap is composed of a bit stream covering whole blocks in main area.
 -- 
-1.7.7.6
+1.7.9.5
 

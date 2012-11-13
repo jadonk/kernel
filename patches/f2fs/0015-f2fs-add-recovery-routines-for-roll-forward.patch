@@ -1,4 +1,4 @@
-From 9a6650863f92c552e1d6bd236e78f667c51d4103 Mon Sep 17 00:00:00 2001
+From 46082881c7e49dc9c51e95b99f0420d3bb4da92f Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:32:56 +0000
 Subject: [PATCH 15/20] f2fs: add recovery routines for roll-forward
@@ -25,7 +25,7 @@ This adds roll-forward routines to recover fsynced data.
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/recovery.c |  375 ++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 375 insertions(+), 0 deletions(-)
+ 1 file changed, 375 insertions(+)
  create mode 100644 fs/f2fs/recovery.c
 
 diff --git a/fs/f2fs/recovery.c b/fs/f2fs/recovery.c
@@ -410,5 +410,5 @@ index 0000000..59b6331
 +	write_checkpoint(sbi, false, false);
 +}
 -- 
-1.7.7.6
+1.7.9.5
 

@@ -1,4 +1,4 @@
-From 840bd524d62592a5284809ee5535726e8ac6f4d0 Mon Sep 17 00:00:00 2001
+From 563fe3a650ac82ed8eeb067a61b2e263e44db209 Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Fri, 19 Oct 2012 11:24:40 -0400
 Subject: [PATCH 31/31] proposed probe fix - works for me on evm
@@ -6,7 +6,7 @@ Subject: [PATCH 31/31] proposed probe fix - works for me on evm
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
  arch/arm/common/edma.c |   12 ++++++------
- 1 files changed, 6 insertions(+), 6 deletions(-)
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/arch/arm/common/edma.c b/arch/arm/common/edma.c
 index b761b7a..6ed394f 100644
@@ -42,5 +42,5 @@ index b761b7a..6ed394f 100644
  		of_dma_controller_register(dev->of_node,
  					   of_dma_simple_xlate,
 -- 
-1.7.7.6
+1.7.9.5
 

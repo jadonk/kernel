@@ -1,4 +1,4 @@
-From a27d0857259fd92a3885ded91c29552e36ebd2ce Mon Sep 17 00:00:00 2001
+From 02b37c6853747f8d5c6480b6995bb51361e11133 Mon Sep 17 00:00:00 2001
 From: Mugunthan V N <mugunthanvnm@ti.com>
 Date: Sun, 29 Jul 2012 20:56:29 +0530
 Subject: [PATCH 4/4] arm/dts: am33xx: Add cpsw and mdio module nodes for
@@ -14,7 +14,7 @@ Signed-off-by: Vaibhav Hiremath <hvaibhav@ti.com>
  arch/arm/boot/dts/am335x-bone.dts |    8 ++++++
  arch/arm/boot/dts/am335x-evm.dts  |    8 ++++++
  arch/arm/boot/dts/am33xx.dtsi     |   50 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 66 insertions(+), 0 deletions(-)
+ 3 files changed, 66 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am335x-bone.dts b/arch/arm/boot/dts/am335x-bone.dts
 index 2ad3914..47c17e8 100644
@@ -109,5 +109,5 @@ index 063ecea..a6bfd9b 100644
  	};
  };
 -- 
-1.7.7.6
+1.7.9.5
 

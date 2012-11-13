@@ -1,4 +1,4 @@
-From dff372ba4c2083b6734b79df1318a02141cbbb70 Mon Sep 17 00:00:00 2001
+From 8afdb438404101020b28c1ca31c37aed68a9c606 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:30:45 +0000
 Subject: [PATCH 11/20] f2fs: add inode operations for special inodes
@@ -9,7 +9,7 @@ Signed-off-by: Changman Lee <cm224.lee@samsung.com>
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/namei.c |  494 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 494 insertions(+), 0 deletions(-)
+ 1 file changed, 494 insertions(+)
  create mode 100644 fs/f2fs/namei.c
 
 diff --git a/fs/f2fs/namei.c b/fs/f2fs/namei.c
@@ -513,5 +513,5 @@ index 0000000..899d144
 +#endif
 +};
 -- 
-1.7.7.6
+1.7.9.5
 

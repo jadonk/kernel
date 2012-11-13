@@ -1,4 +1,4 @@
-From cbfe11aebb67aad70e2af554b220c6c852847036 Mon Sep 17 00:00:00 2001
+From c491dfbc23583e8baef430ba9e275a2d0b4a8fd5 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:32:20 +0000
 Subject: [PATCH 14/20] f2fs: add garbage collection functions
@@ -35,7 +35,7 @@ Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/gc.c | 1139 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  fs/f2fs/gc.h |  203 +++++++++++
- 2 files changed, 1342 insertions(+), 0 deletions(-)
+ 2 files changed, 1342 insertions(+)
  create mode 100644 fs/f2fs/gc.c
  create mode 100644 fs/f2fs/gc.h
 
@@ -1394,5 +1394,5 @@ index 0000000..29b345d
 +	return free_sections(sbi) <= (node_secs + 2 * dent_secs + 2);
 +}
 -- 
-1.7.7.6
+1.7.9.5
 

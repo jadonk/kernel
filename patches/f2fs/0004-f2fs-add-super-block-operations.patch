@@ -1,4 +1,4 @@
-From d31cb3056b4148cfee8f6e77da4fa66a8eb0768d Mon Sep 17 00:00:00 2001
+From 03ee6063ab8c1f392508ba75a53c2381a29dbea2 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:27:13 +0000
 Subject: [PATCH 04/20] f2fs: add super block operations
@@ -11,7 +11,7 @@ This adds the implementation of superblock operations for f2fs, which includes
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/super.c |  590 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 590 insertions(+), 0 deletions(-)
+ 1 file changed, 590 insertions(+)
  create mode 100644 fs/f2fs/super.c
 
 diff --git a/fs/f2fs/super.c b/fs/f2fs/super.c
@@ -611,5 +611,5 @@ index 0000000..8e608a0
 +MODULE_DESCRIPTION("Flash Friendly File System");
 +MODULE_LICENSE("GPL");
 -- 
-1.7.7.6
+1.7.9.5
 

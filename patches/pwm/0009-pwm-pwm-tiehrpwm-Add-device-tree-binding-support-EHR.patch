@@ -1,4 +1,4 @@
-From 2e4004378a564fda0d260f1a2b5e283e8e3a2e7f Mon Sep 17 00:00:00 2001
+From a74149d9594b7e66ef1c21b34276d0a59352f1d4 Mon Sep 17 00:00:00 2001
 From: "Philip, Avinash" <avinashphilip@ti.com>
 Date: Mon, 2 Jul 2012 14:03:53 +0530
 Subject: [PATCH 9/9] pwm: pwm-tiehrpwm: Add device-tree binding support
@@ -18,7 +18,7 @@ Conflicts:
 ---
  .../devicetree/bindings/pwm/ehrpwm-pwm.txt         |   24 ++++++++++++++
  drivers/pwm/pwm-tiehrpwm.c                         |   34 ++++++++++++++++++++
- 2 files changed, 58 insertions(+), 0 deletions(-)
+ 2 files changed, 58 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pwm/ehrpwm-pwm.txt
 
 diff --git a/Documentation/devicetree/bindings/pwm/ehrpwm-pwm.txt b/Documentation/devicetree/bindings/pwm/ehrpwm-pwm.txt
@@ -121,5 +121,5 @@ index 288f93e..4f1e467 100644
  	.probe = ehrpwm_pwm_probe,
  	.remove = __devexit_p(ehrpwm_pwm_remove),
 -- 
-1.7.7.6
+1.7.9.5
 

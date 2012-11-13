@@ -1,4 +1,4 @@
-From a1483850efbe2adc38b9b847b72f5ecace199e8a Mon Sep 17 00:00:00 2001
+From 8cd20752f825a0a78bc059a7db4ff2f3ac1a199d Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:33:28 +0000
 Subject: [PATCH 16/20] f2fs: update Kconfig and Makefile
@@ -11,8 +11,8 @@ Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
  fs/Kconfig       |    1 +
  fs/Makefile      |    1 +
  fs/f2fs/Kconfig  |   55 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
- fs/f2fs/Makefile |    6 +++++
- 4 files changed, 63 insertions(+), 0 deletions(-)
+ fs/f2fs/Makefile |    6 ++++++
+ 4 files changed, 63 insertions(+)
  create mode 100644 fs/f2fs/Kconfig
  create mode 100644 fs/f2fs/Makefile
 
@@ -114,5 +114,5 @@ index 0000000..72fcf9a
 +f2fs-$(CONFIG_F2FS_FS_XATTR) += xattr.o
 +f2fs-$(CONFIG_F2FS_FS_POSIX_ACL) += acl.o
 -- 
-1.7.7.6
+1.7.9.5
 

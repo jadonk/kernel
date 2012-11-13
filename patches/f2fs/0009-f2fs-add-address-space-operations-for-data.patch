@@ -1,4 +1,4 @@
-From befe14b1e61f3d2af8addb93ad176d125fa0418c Mon Sep 17 00:00:00 2001
+From 9ab81540f7235085155f3ecaf01d482740bae4ac Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:29:49 +0000
 Subject: [PATCH 09/20] f2fs: add address space operations for data
@@ -12,7 +12,7 @@ This adds address space operations for data.
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/data.c |  701 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 701 insertions(+), 0 deletions(-)
+ 1 file changed, 701 insertions(+)
  create mode 100644 fs/f2fs/data.c
 
 diff --git a/fs/f2fs/data.c b/fs/f2fs/data.c
@@ -723,5 +723,5 @@ index 0000000..c2fd0a8
 +	.direct_IO	= f2fs_direct_IO,
 +};
 -- 
-1.7.7.6
+1.7.9.5
 

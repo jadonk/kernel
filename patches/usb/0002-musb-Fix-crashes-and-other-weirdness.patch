@@ -1,11 +1,11 @@
-From 4ac8f05d79800ad96e200165fbf22b7bea7e1385 Mon Sep 17 00:00:00 2001
+From 4fba033a3542c9114cb63142547925f6e5556e63 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Thu, 4 Oct 2012 17:53:53 +0300
 Subject: [PATCH 2/9] musb: Fix crashes, and other weirdness.
 
 ---
  arch/arm/boot/dts/am33xx.dtsi |   26 ++++++++++++++++++++++++++
- 1 files changed, 26 insertions(+), 0 deletions(-)
+ 1 file changed, 26 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
 index 535a66c..9bb71cb 100644
@@ -45,5 +45,5 @@ index 535a66c..9bb71cb 100644
  			compatible = "ti,omap4-mcspi";
  			ti,hwmods = "spi0";
 -- 
-1.7.7.6
+1.7.9.5
 

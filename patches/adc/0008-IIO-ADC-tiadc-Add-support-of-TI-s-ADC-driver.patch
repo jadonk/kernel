@@ -1,4 +1,4 @@
-From 734bf8b2f467d2ef9696b0287f89dea6c9acc30e Mon Sep 17 00:00:00 2001
+From 723708b534e38b0868982f63f238a07c9982e861 Mon Sep 17 00:00:00 2001
 From: "Patil, Rachna" <rachna@ti.com>
 Date: Tue, 16 Oct 2012 07:25:45 +0000
 Subject: [PATCH 08/13] IIO : ADC: tiadc: Add support of TI's ADC driver
@@ -15,7 +15,7 @@ Acked-by: Jonathan Cameron <jic23@kernel.org>
  drivers/iio/adc/Kconfig                     |    7 +
  drivers/iio/adc/Makefile                    |    1 +
  drivers/iio/adc/ti_am335x_adc.c             |  260 +++++++++++++++++++++++++++
- drivers/mfd/ti_am335x_tscadc.c              |   18 ++-
+ drivers/mfd/ti_am335x_tscadc.c              |   18 +-
  include/linux/mfd/ti_am335x_tscadc.h        |    9 +-
  include/linux/platform_data/ti_am335x_adc.h |   14 ++
  6 files changed, 307 insertions(+), 2 deletions(-)
@@ -419,5 +419,5 @@ index 0000000..e41d583
 +
 +#endif
 -- 
-1.7.7.6
+1.7.9.5
 

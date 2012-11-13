@@ -1,4 +1,4 @@
-From 99a3b60ce1e8cd27e3ed1b60c17a98229f7b8a93 Mon Sep 17 00:00:00 2001
+From 9c195218ec96eadd26aca7d1324f2e14b2dffbe9 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Fri, 14 Sep 2012 17:51:11 +0300
 Subject: [PATCH 1/4] i2c: pinctrl-ify i2c-omap.c
@@ -7,7 +7,7 @@ Conflicts:
 	drivers/i2c/busses/i2c-omap.c
 ---
  drivers/i2c/busses/i2c-omap.c |   10 ++++++++++
- 1 files changed, 10 insertions(+), 0 deletions(-)
+ 1 file changed, 10 insertions(+)
 
 diff --git a/drivers/i2c/busses/i2c-omap.c b/drivers/i2c/busses/i2c-omap.c
 index db31eae..4c38aa0 100644
@@ -45,5 +45,5 @@ index db31eae..4c38aa0 100644
  	pm_runtime_put_autosuspend(dev->dev);
  
 -- 
-1.7.7.6
+1.7.9.5
 

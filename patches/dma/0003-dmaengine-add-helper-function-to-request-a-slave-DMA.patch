@@ -1,4 +1,4 @@
-From f8765dec4f46b22f23d513e27fb6c6a170ddd39f Mon Sep 17 00:00:00 2001
+From 7f1f51e15d704c264c6c8eb8b83df0d2d42a7cc7 Mon Sep 17 00:00:00 2001
 From: Jon Hunter <jon-hunter@ti.com>
 Date: Fri, 14 Sep 2012 17:41:57 -0500
 Subject: [PATCH 03/31] dmaengine: add helper function to request a slave DMA
@@ -32,7 +32,7 @@ Signed-off-by: Vinod Koul <vinod.koul@linux.intel.com>
 ---
  drivers/dma/dmaengine.c   |   16 ++++++++++++++++
  include/linux/dmaengine.h |    6 ++++++
- 2 files changed, 22 insertions(+), 0 deletions(-)
+ 2 files changed, 22 insertions(+)
 
 diff --git a/drivers/dma/dmaengine.c b/drivers/dma/dmaengine.c
 index a815d44..d37cf95 100644
@@ -93,5 +93,5 @@ index d3201e4..8cd0e25 100644
  {
  }
 -- 
-1.7.7.6
+1.7.9.5
 

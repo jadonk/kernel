@@ -1,4 +1,4 @@
-From bdafe6af1643431090ce32f1016160101f10dbc8 Mon Sep 17 00:00:00 2001
+From 7a5f674292a4564bebbcbf0cf9c2b13cfb3f3de7 Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:29:21 +0000
 Subject: [PATCH 08/20] f2fs: add file operations
@@ -10,7 +10,7 @@ This adds memory operations and file/file_inode operations.
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/file.c |  640 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 640 insertions(+), 0 deletions(-)
+ 1 file changed, 640 insertions(+)
  create mode 100644 fs/f2fs/file.c
 
 diff --git a/fs/f2fs/file.c b/fs/f2fs/file.c
@@ -660,5 +660,5 @@ index 0000000..81b1fd0
 +	.splice_write	= generic_file_splice_write,
 +};
 -- 
-1.7.7.6
+1.7.9.5
 

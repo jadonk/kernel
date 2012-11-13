@@ -1,4 +1,4 @@
-From d8b8ff5b53d18a033c1def5f445fe91399c7c4ac Mon Sep 17 00:00:00 2001
+From a39ef5668dabd978eb6db69d5922f52113d2197d Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Tue, 30 Oct 2012 21:07:50 +0200
 Subject: [PATCH 16/20] capebus: Add beaglebone board support
@@ -10,7 +10,7 @@ Subject: [PATCH 16/20] capebus: Add beaglebone board support
  drivers/capebus/boards/capebus-bone-pdevs.c   |  602 ++++++++++++++++
  drivers/capebus/boards/capebus-bone.c         |  931 +++++++++++++++++++++++++
  include/linux/capebus/capebus-bone.h          |  120 ++++
- 6 files changed, 1899 insertions(+), 0 deletions(-)
+ 6 files changed, 1899 insertions(+)
  create mode 100644 drivers/capebus/boards/Kconfig
  create mode 100644 drivers/capebus/boards/Makefile
  create mode 100644 drivers/capebus/boards/capebus-bone-generic.c
@@ -1954,5 +1954,5 @@ index 0000000..e394304
 +
 +#endif
 -- 
-1.7.7.6
+1.7.9.5
 

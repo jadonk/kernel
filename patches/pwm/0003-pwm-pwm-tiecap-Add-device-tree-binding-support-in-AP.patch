@@ -1,4 +1,4 @@
-From dca5663ac834c49585f34344e398ea4b834eaf7a Mon Sep 17 00:00:00 2001
+From 1acbd812436ae0018e934efd8a5745f924b21211 Mon Sep 17 00:00:00 2001
 From: "Philip, Avinash" <avinashphilip@ti.com>
 Date: Fri, 29 Jun 2012 10:52:57 +0530
 Subject: [PATCH 3/9] pwm: pwm-tiecap: Add device-tree binding support in APWM
@@ -13,9 +13,9 @@ device tree.
 
 Signed-off-by: Philip, Avinash <avinashphilip@ti.com>
 ---
- Documentation/devicetree/bindings/pwm/ecap-pwm.txt |   24 +++++++++++++
+ Documentation/devicetree/bindings/pwm/ecap-pwm.txt |   24 ++++++++++++++
  drivers/pwm/pwm-tiecap.c                           |   35 ++++++++++++++++++++
- 2 files changed, 59 insertions(+), 0 deletions(-)
+ 2 files changed, 59 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pwm/ecap-pwm.txt
 
 diff --git a/Documentation/devicetree/bindings/pwm/ecap-pwm.txt b/Documentation/devicetree/bindings/pwm/ecap-pwm.txt
@@ -119,5 +119,5 @@ index d6d4cf0..d15941c 100644
  	.probe = ecap_pwm_probe,
  	.remove = __devexit_p(ecap_pwm_remove),
 -- 
-1.7.7.6
+1.7.9.5
 

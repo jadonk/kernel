@@ -1,4 +1,4 @@
-From 24c0c69d39f8e5abfecab6f133d0bbb8238200e5 Mon Sep 17 00:00:00 2001
+From e88c42cdb5f5c7415f4a8a073acb68fd0a1668bb Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Fri, 19 Oct 2012 10:38:00 +0300
 Subject: [PATCH 05/20] pwm: export of_pwm_request
@@ -7,7 +7,7 @@ No need to hide this, it's useful.
 ---
  drivers/pwm/core.c  |    6 +++++-
  include/linux/pwm.h |    7 +++++++
- 2 files changed, 12 insertions(+), 1 deletions(-)
+ 2 files changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
 index f5acdaa..f8c7e6b 100644
@@ -66,5 +66,5 @@ index 112b314..fafbb1c 100644
  					 const char *consumer)
  {
 -- 
-1.7.7.6
+1.7.9.5
 

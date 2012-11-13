@@ -1,4 +1,4 @@
-From 4a39e9f3cb5a765eb963d4f46c0e2433e650350f Mon Sep 17 00:00:00 2001
+From 7c410eadffb8cdceb86e3d61fe5b0aa727c14a0c Mon Sep 17 00:00:00 2001
 From: ??? <jaegeuk.kim@samsung.com>
 Date: Tue, 23 Oct 2012 02:28:19 +0000
 Subject: [PATCH 06/20] f2fs: add node operations
@@ -31,7 +31,7 @@ pages.
 Signed-off-by: Jaegeuk Kim <jaegeuk.kim@samsung.com>
 ---
  fs/f2fs/node.c | 1782 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 files changed, 1782 insertions(+), 0 deletions(-)
+ 1 file changed, 1782 insertions(+)
  create mode 100644 fs/f2fs/node.c
 
 diff --git a/fs/f2fs/node.c b/fs/f2fs/node.c
@@ -1823,5 +1823,5 @@ index 0000000..df69058
 +	kmem_cache_destroy(nat_entry_slab);
 +}
 -- 
-1.7.7.6
+1.7.9.5
 

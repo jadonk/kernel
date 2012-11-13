@@ -1,4 +1,4 @@
-From 4df7f3e6d47c2aba56e1a436e476742ff18394c2 Mon Sep 17 00:00:00 2001
+From 8413e131b75d2b311f943bf2ea0fd0fa5ca28414 Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Wed, 22 Aug 2012 09:24:24 -0400
 Subject: [PATCH 09/31] ARM: davinci: move private EDMA API to arm/common
@@ -4047,5 +4047,5 @@ index 5be65aa..5345e63 100644
  
  static struct platform_device *sffsdr_snd_device;
 -- 
-1.7.7.6
+1.7.9.5
 

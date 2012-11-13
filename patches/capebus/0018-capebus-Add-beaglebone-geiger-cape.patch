@@ -1,4 +1,4 @@
-From 647eb9387a7975dd5045a26442cb1115fa3d4f08 Mon Sep 17 00:00:00 2001
+From 51a9d0808adfeede7c36fa61c88008cb4ee36996 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Tue, 30 Oct 2012 21:12:20 +0200
 Subject: [PATCH 18/20] capebus: Add beaglebone geiger cape
@@ -7,7 +7,7 @@ Subject: [PATCH 18/20] capebus: Add beaglebone geiger cape
  drivers/capebus/capes/Kconfig            |    7 +
  drivers/capebus/capes/Makefile           |    1 +
  drivers/capebus/capes/bone-geiger-cape.c |  506 ++++++++++++++++++++++++++++++
- 3 files changed, 514 insertions(+), 0 deletions(-)
+ 3 files changed, 514 insertions(+)
  create mode 100644 drivers/capebus/capes/bone-geiger-cape.c
 
 diff --git a/drivers/capebus/capes/Kconfig b/drivers/capebus/capes/Kconfig
@@ -545,5 +545,5 @@ index 0000000..880eaae
 +MODULE_LICENSE("GPL");
 +MODULE_ALIAS("platform:bone-geiger-cape");
 -- 
-1.7.7.6
+1.7.9.5
 

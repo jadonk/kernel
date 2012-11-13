@@ -1,4 +1,4 @@
-From b2fa01bdcc256b0239fd2f3c985ecfaf2f7430ad Mon Sep 17 00:00:00 2001
+From fba5a167d3a598671d73bbf27f9aa3bcce9607f2 Mon Sep 17 00:00:00 2001
 From: Koen Kooi <koen@dominion.thruhere.net>
 Date: Thu, 18 Oct 2012 10:11:48 +0200
 Subject: [PATCH 2/3] am33xx.dtsi: enable MMC HSPE bit for all 3 controllers
@@ -6,7 +6,7 @@ Subject: [PATCH 2/3] am33xx.dtsi: enable MMC HSPE bit for all 3 controllers
 Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
 ---
  arch/arm/boot/dts/am33xx.dtsi |    3 +++
- 1 files changed, 3 insertions(+), 0 deletions(-)
+ 1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
 index 9bb71cb..8bddc9c 100644
@@ -37,5 +37,5 @@ index 9bb71cb..8bddc9c 100644
  		};
  
 -- 
-1.7.7.6
+1.7.9.5
 

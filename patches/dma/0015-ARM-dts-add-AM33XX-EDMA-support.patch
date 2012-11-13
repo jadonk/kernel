@@ -1,4 +1,4 @@
-From 7347b1f657323d65024193c696f72b057c0dab50 Mon Sep 17 00:00:00 2001
+From 162e5feac09eb6e6938041862e01a6965b20d7ca Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Wed, 10 Oct 2012 10:01:33 -0400
 Subject: [PATCH 15/31] ARM: dts: add AM33XX EDMA support
@@ -9,7 +9,7 @@ Documentation/devicetree/bindings/dma/ti-edma.txt
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
  arch/arm/boot/dts/am33xx.dtsi |   31 +++++++++++++++++++++++++++++++
- 1 files changed, 31 insertions(+), 0 deletions(-)
+ 1 file changed, 31 insertions(+)
 
 diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
 index bb31bff..ab9c78f 100644
@@ -54,5 +54,5 @@ index bb31bff..ab9c78f 100644
  			compatible = "ti,omap4-gpio";
  			ti,hwmods = "gpio1";
 -- 
-1.7.7.6
+1.7.9.5
 

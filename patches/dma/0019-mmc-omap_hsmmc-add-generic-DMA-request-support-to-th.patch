@@ -1,4 +1,4 @@
-From a38479886bba08ca97ae0308048e894cbe88ebfe Mon Sep 17 00:00:00 2001
+From fdd69d1a928844b0ed4f1d9bc9b31582604c45e1 Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Thu, 20 Sep 2012 07:47:47 -0400
 Subject: [PATCH 19/31] mmc: omap_hsmmc: add generic DMA request support to
@@ -9,7 +9,7 @@ The binding definition is based on the generic DMA request binding.
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
  .../devicetree/bindings/mmc/ti-omap-hsmmc.txt      |   25 +++++++++++++++++++-
- 1 files changed, 24 insertions(+), 1 deletions(-)
+ 1 file changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/mmc/ti-omap-hsmmc.txt b/Documentation/devicetree/bindings/mmc/ti-omap-hsmmc.txt
 index be76a23..d1b8932 100644
@@ -54,5 +54,5 @@ index be76a23..d1b8932 100644
 +		dma-names = "tx", "rx";
  	};
 -- 
-1.7.7.6
+1.7.9.5
 

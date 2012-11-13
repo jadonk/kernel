@@ -1,4 +1,4 @@
-From dc5f3cc637fe88ba155e292c6ec05174893801ae Mon Sep 17 00:00:00 2001
+From b67e28bbb493f7ca2c325a0f6b6349b6260cdcc9 Mon Sep 17 00:00:00 2001
 From: Vinod Koul <vinod.koul@linux.intel.com>
 Date: Tue, 25 Sep 2012 09:57:36 +0530
 Subject: [PATCH 05/31] of: dma- fix build break for !CONFIG_OF
@@ -6,7 +6,7 @@ Subject: [PATCH 05/31] of: dma- fix build break for !CONFIG_OF
 Signed-off-by: Vinod Koul <vinod.koul@linux.intel.com>
 ---
  include/linux/of_dma.h |   27 +++++++++++++++++++++++++++
- 1 files changed, 27 insertions(+), 0 deletions(-)
+ 1 file changed, 27 insertions(+)
 
 diff --git a/include/linux/of_dma.h b/include/linux/of_dma.h
 index 337823d..67158dd 100644
@@ -53,5 +53,5 @@ index 337823d..67158dd 100644
  
  #endif /* __LINUX_OF_DMA_H */
 -- 
-1.7.7.6
+1.7.9.5
 
