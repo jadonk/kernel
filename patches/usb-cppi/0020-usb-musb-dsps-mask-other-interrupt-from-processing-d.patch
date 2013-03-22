@@ -1,0 +1,40 @@
+From cd424dc07518ed92142fc003193dd79a4feee749 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 22 Mar 2013 13:47:17 +0530
+Subject: [PATCH 20/24] usb: musb: dsps: mask other interrupt from processing during babble
+
+when the controller detected babble condition on the bus, as
+per spec, the host controller stops the session. When this
+condition the musb controller removes the session and musb host
+controller is no longer in host mode and generates the babble
+interrupt.
+In this condition all the connected devices would be disconnected
+from host as host in no longer in session and hence notify the
+stack as root hub disconnect event. As part of babble workaround
+condition when the controller is restarted the controller will
+re-enumerate the devices again.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_dsps.c |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_dsps.c b/drivers/usb/musb/musb_dsps.c
+index 2014df5..208d45c 100644
+--- a/drivers/usb/musb/musb_dsps.c
++++ b/drivers/usb/musb/musb_dsps.c
+@@ -868,8 +868,10 @@ static irqreturn_t dsps_interrupt(int irq, void *hci)
+ 	 * value but DEVCTL.BDEVICE is invalid without DEVCTL.SESSION set.
+ 	 * Also, DRVVBUS pulses for SRP (but not at 5V) ...
+ 	 */
+-	if (is_host_active(musb) && usbintr & MUSB_INTR_BABBLE)
++	if (is_host_active(musb) && usbintr & MUSB_INTR_BABBLE) {
+ 		pr_info("CAUTION: musb: Babble Interrupt Occurred\n");
++		musb->int_usb = MUSB_INTR_DISCONNECT;
++	}
+ 
+ 	if (usbintr & ((1 << wrp->drvvbus) << wrp->usb_shift)) {
+ 		int drvvbus = dsps_readl(reg_base, wrp->status);
+-- 
+1.7.0.4
+

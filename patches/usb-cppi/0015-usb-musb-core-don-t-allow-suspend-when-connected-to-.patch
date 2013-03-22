@@ -1,0 +1,51 @@
+From f45e254c2cc7d67fa06d42f75429995f97c8eb37 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Thu, 21 Mar 2013 15:24:36 +0530
+Subject: [PATCH 15/24] usb: musb: core: don't allow suspend when connected to host in device mode
+
+While the target is connected to host and user has initiated suspend
+then we should not allow system suspend as target is acting as slave
+in gadget mode and can't suspend the bus without host initiation.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_core.c |    9 ++++++++-
+ 1 files changed, 8 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_core.c b/drivers/usb/musb/musb_core.c
+index 28548cd..e84d6a9 100644
+--- a/drivers/usb/musb/musb_core.c
++++ b/drivers/usb/musb/musb_core.c
+@@ -2216,13 +2216,20 @@ static int musb_suspend(struct device *dev)
+ {
+ 	struct musb	*musb = dev_to_musb(dev);
+ 	unsigned long	flags;
++	u8 devctl = musb_readb(musb->mregs, MUSB_DEVCTL);
++	int ret = 0;
+ 
+ 	spin_lock_irqsave(&musb->lock, flags);
+ 
+ 	if (is_peripheral_active(musb)) {
+ 		/* FIXME force disconnect unless we know USB will wake
+ 		 * the system up quickly enough to respond ...
++		 * Don't allow system suspend while peripheral mode
++		 * is actve and cable is connected to host.
+ 		 */
++		if ((devctl & MUSB_DEVCTL_VBUS) == MUSB_DEVCTL_VBUS
++			&& (devctl & MUSB_DEVCTL_BDEVICE))
++			ret = -EBUSY;
+ 	} else if (is_host_active(musb)) {
+ 		/* we know all the children are suspended; sometimes
+ 		 * they will even be wakeup-enabled.
+@@ -2230,7 +2237,7 @@ static int musb_suspend(struct device *dev)
+ 	}
+ 
+ 	spin_unlock_irqrestore(&musb->lock, flags);
+-	return 0;
++	return ret;
+ }
+ 
+ static int musb_resume_noirq(struct device *dev)
+-- 
+1.7.0.4
+
