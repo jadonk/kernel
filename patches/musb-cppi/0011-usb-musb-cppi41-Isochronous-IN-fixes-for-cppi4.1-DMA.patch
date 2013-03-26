@@ -1,0 +1,59 @@
+From b0d2fc8fe860395c6785d483914bc5162f5bb56a Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Sat, 16 Mar 2013 00:16:23 +0530
+Subject: [PATCH 11/24] usb: musb: cppi41: Isochronous IN fixes for cppi4.1 DMA
+
+The isochronous IN URBs must be completed or giveback after
+receiving all the isochronous frames, the cppi4.1 channel
+must be programmed till all isoch frames are received.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_host.c |   20 ++++++++++++++++----
+ 1 files changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_host.c b/drivers/usb/musb/musb_host.c
+index 14937b7..a3e763f 100644
+--- a/drivers/usb/musb/musb_host.c
++++ b/drivers/usb/musb/musb_host.c
+@@ -1673,9 +1673,13 @@ void musb_host_rx(struct musb *musb, u8 epnum)
+ 			| MUSB_RXCSR_H_AUTOREQ
+ 			| MUSB_RXCSR_AUTOCLEAR
+ 			| MUSB_RXCSR_RXPKTRDY);
++
++		if (is_cppi41_enabled() && usb_pipeisoc(pipe))
++			val |= MUSB_RXCSR_DMAENAB;
++
+ 		musb_writew(hw_ep->regs, MUSB_RXCSR, val);
+ 
+-#ifdef CONFIG_USB_INVENTRA_DMA
++#if defined(CONFIG_USB_INVENTRA_DMA) || defined(CONFIG_TI_CPPI41_DMA)
+ 		if (usb_pipeisoc(pipe)) {
+ 			struct usb_iso_packet_descriptor *d;
+ 
+@@ -1688,11 +1692,19 @@ void musb_host_rx(struct musb *musb, u8 epnum)
+ 			if (d->status != -EILSEQ && d->status != -EOVERFLOW)
+ 				d->status = 0;
+ 
++			done = false;
+ 			if (++qh->iso_idx >= urb->number_of_packets)
+ 				done = true;
+-			else
+-				done = false;
+-
++			else if (is_cppi41_enabled(musb)) {
++				struct dma_controller   *c;
++				int ret, idx = qh->iso_idx;
++
++				c = musb->dma_controller;
++				ret = c->channel_program(dma, qh->maxpacket, 0,
++					(u32)urb->transfer_dma +
++					urb->iso_frame_desc[idx].offset,
++					urb->iso_frame_desc[idx].length);
++			}
+ 		} else  {
+ 		/* done if urb buffer is full or short packet is recd */
+ 		done = (urb->actual_length + xfer_len >=
+-- 
+1.7.0.4
+

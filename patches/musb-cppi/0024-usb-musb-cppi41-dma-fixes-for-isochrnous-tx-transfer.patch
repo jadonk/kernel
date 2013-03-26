@@ -1,0 +1,40 @@
+From 7fc04f2af0ba238456cb958408f983728be8b5a4 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 22 Mar 2013 23:00:53 +0530
+Subject: [PATCH 24/24] usb: musb: cppi41: dma fixes for isochrnous tx transfer
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/cppi41_dma.c |    8 +++++++-
+ 1 files changed, 7 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/cppi41_dma.c b/drivers/usb/musb/cppi41_dma.c
+index cbe3e31..6530e21 100644
+--- a/drivers/usb/musb/cppi41_dma.c
++++ b/drivers/usb/musb/cppi41_dma.c
+@@ -172,6 +172,11 @@ static void usb_put_free_pd(struct cppi41 *cppi, struct usb_pkt_desc *free_pd)
+ 	cppi->pd_pool_head = free_pd;
+ }
+ 
++int get_xfer_type(struct musb_hw_ep *hw_ep, u8 is_tx)
++{
++	u8 type = musb_readb(hw_ep->regs, is_tx ? MUSB_TXTYPE : MUSB_RXTYPE);
++	return (type >> 4) & 3;
++}
+ /**
+  * dma_controller_start - start DMA controller
+  * @controller: the controller
+@@ -576,8 +581,9 @@ static unsigned cppi41_next_tx_segment(struct cppi41_channel *tx_ch)
+ 	u16 q_mgr = cppi_info->q_mgr;
+ 	u16 tx_comp_q = cppi_info->tx_comp_q[tx_ch->ch_num];
+ 	u32 residue;
++	u8 is_isoc = get_xfer_type(tx_ch->end_pt, 1) == USB_ENDPOINT_XFER_ISOC;
+ 
+-	if (length > 128) {
++	if (!is_isoc && length > 128) {
+ 		residue = length % tx_ch->pkt_size;
+ 		if (residue <= 128)
+ 			length -= residue;
+-- 
+1.7.0.4
+

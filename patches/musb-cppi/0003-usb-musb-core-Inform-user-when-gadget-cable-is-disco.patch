@@ -1,0 +1,33 @@
+From b34e2fd8c802723be930e227230ae4aa45f6bbbf Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 15 Mar 2013 16:43:09 +0530
+Subject: [PATCH 03/24] usb: musb: core: Inform user when gadget cable is disconnected
+
+Currently we don't see any message to inform user that gadget cable is
+successfully disconnected leading to suspicion if everything is fine at
+driver therefore adding an informative print message in gadget
+disconnect path.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_core.c |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_core.c b/drivers/usb/musb/musb_core.c
+index 60b41cc..5834991 100644
+--- a/drivers/usb/musb/musb_core.c
++++ b/drivers/usb/musb/musb_core.c
+@@ -783,6 +783,10 @@ b_host:
+ 			/* FALLTHROUGH */
+ 		case OTG_STATE_B_PERIPHERAL:
+ 		case OTG_STATE_B_IDLE:
++			pr_info("musb %s gadget disconnected.\n",
++				musb->gadget_driver
++				? musb->gadget_driver->driver.name
++				: "");
+ 			musb_g_disconnect(musb);
+ 			break;
+ 		default:
+-- 
+1.7.0.4
+

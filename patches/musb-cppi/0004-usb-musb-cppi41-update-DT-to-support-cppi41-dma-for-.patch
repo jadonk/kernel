@@ -1,0 +1,29 @@
+From 7f7617e7a2344d66b9b55559c59a0a231fc1a1c5 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 15 Mar 2013 17:02:10 +0530
+Subject: [PATCH 04/24] usb: musb: cppi41: update DT to support cppi41 dma for am335x platform
+
+update device tree to support cppi41 dma for am335x platform
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ arch/arm/boot/dts/am33xx.dtsi |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
+index 8fd3648..193c0b1 100644
+--- a/arch/arm/boot/dts/am33xx.dtsi
++++ b/arch/arm/boot/dts/am33xx.dtsi
+@@ -384,7 +384,8 @@
+ 			compatible = "ti,musb-am33xx";
+ 			reg = <0x47400000 0x1000	/* usbss */
+ 			       0x47401000 0x800		/* musb instance 0 */
+-			       0x47401800 0x800>;	/* musb instance 1 */
++			       0x47401800 0x800		/* musb instance 1 */
++			       0x47402000 0x6000>;	/* cppi41 usbdma */
+ 			interrupts = <17		/* usbss */
+ 				      18		/* musb instance 0 */
+ 				      19>;		/* musb instance 1 */
+-- 
+1.7.0.4
+
