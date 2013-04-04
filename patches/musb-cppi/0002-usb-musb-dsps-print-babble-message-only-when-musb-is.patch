@@ -1,0 +1,31 @@
+From 1084b2cc2b9b1a8d938f82c90164e2d0d33db07d Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 8 Mar 2013 17:08:26 +0530
+Subject: [PATCH 02/30] usb: musb: dsps: print babble message only when musb is active host
+
+The musb controller uses single bit defintion for both reset and
+babble events. The babble event is valid only when controller is
+active a-host, and hence print the babble message only when the
+controller is active a-host.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_dsps.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_dsps.c b/drivers/usb/musb/musb_dsps.c
+index c8588a7..65f5645 100644
+--- a/drivers/usb/musb/musb_dsps.c
++++ b/drivers/usb/musb/musb_dsps.c
+@@ -335,7 +335,7 @@ static irqreturn_t dsps_interrupt(int irq, void *hci)
+ 	 * value but DEVCTL.BDEVICE is invalid without DEVCTL.SESSION set.
+ 	 * Also, DRVVBUS pulses for SRP (but not at 5V) ...
+ 	 */
+-	if (usbintr & MUSB_INTR_BABBLE)
++	if (is_host_active(musb) && usbintr & MUSB_INTR_BABBLE)
+ 		pr_info("CAUTION: musb: Babble Interrupt Occurred\n");
+ 
+ 	if (usbintr & ((1 << wrp->drvvbus) << wrp->usb_shift)) {
+-- 
+1.7.0.4
+

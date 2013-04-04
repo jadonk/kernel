@@ -1,0 +1,153 @@
+From 52fc359ed07740c5d2983b26cf559c13df6e3294 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Tue, 26 Mar 2013 13:50:14 +0530
+Subject: [PATCH 22/30] usb: musb: dsps: add api to enable or disable sof
+
+Adding API to enable & disable musb sof interrupts
+which can be used dynamically to enable/disable sof
+interrupts for tx isochronous schedular in dma mode
+using sof interrupt logic
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_core.c |    6 ++++-
+ drivers/usb/musb/musb_core.h |   19 ++++++++++++++++
+ drivers/usb/musb/musb_dsps.c |   49 ++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 73 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_core.c b/drivers/usb/musb/musb_core.c
+index 8bdd9c2..10b159a 100644
+--- a/drivers/usb/musb/musb_core.c
++++ b/drivers/usb/musb/musb_core.c
+@@ -903,6 +903,11 @@ b_host:
+ 		}		/* end of for loop */
+ 	}
+ #endif
++	if (int_usb & MUSB_INTR_SOF) {
++		if (musb->ops->sof_handler)
++			musb->ops->sof_handler(musb);
++		handled = IRQ_HANDLED;
++	}
+ 
+ 	schedule_work(&musb->irq_work);
+ 
+@@ -1023,7 +1028,6 @@ static void musb_shutdown(struct platform_device *pdev)
+ 	/* FIXME power down */
+ }
+ 
+-
+ /*-------------------------------------------------------------------------*/
+ 
+ /*
+diff --git a/drivers/usb/musb/musb_core.h b/drivers/usb/musb/musb_core.h
+index bde35f6..a0d9b2d 100644
+--- a/drivers/usb/musb/musb_core.h
++++ b/drivers/usb/musb/musb_core.h
+@@ -213,6 +213,9 @@ struct musb_platform_ops {
+ 	int	(*adjust_channel_params)(struct dma_channel *channel,
+ 				u16 packet_sz, u8 *mode,
+ 				dma_addr_t *dma_addr, u32 *len);
++	int	(*enable_sof)(struct musb *musb);
++	int	(*disable_sof)(struct musb *musb);
++	int	(*sof_handler)(struct musb *musb);
+ };
+ 
+ /*
+@@ -446,6 +449,7 @@ struct musb {
+ #ifdef CONFIG_DEBUG_FS
+ 	struct dentry		*debugfs_root;
+ #endif
++	u32			sof_enabled;
+ };
+ 
+ static inline struct musb *gadget_to_musb(struct usb_gadget *g)
+@@ -595,4 +599,19 @@ static inline int musb_platform_exit(struct musb *musb)
+ 	return musb->ops->exit(musb);
+ }
+ 
++static inline int musb_enable_sof(struct musb *musb)
++{
++	if (!musb->ops->enable_sof)
++		return -EINVAL;
++
++	return musb->ops->enable_sof(musb);
++}
++
++static inline int musb_disable_sof(struct musb *musb)
++{
++	if (!musb->ops->disable_sof)
++		return -EINVAL;
++
++	return musb->ops->disable_sof(musb);
++}
+ #endif	/* __MUSB_CORE_H__ */
+diff --git a/drivers/usb/musb/musb_dsps.c b/drivers/usb/musb/musb_dsps.c
+index cef66e0..23a1a45 100644
+--- a/drivers/usb/musb/musb_dsps.c
++++ b/drivers/usb/musb/musb_dsps.c
+@@ -849,6 +849,52 @@ static void dsps_musb_try_idle(struct musb *musb, unsigned long timeout)
+ 	mod_timer(&glue->timer[pdev->id], timeout);
+ }
+ 
++int dsps_enable_sof(struct musb *musb)
++{
++	struct device *dev = musb->controller;
++	struct platform_device *pdev = to_platform_device(dev->parent);
++	struct dsps_glue *glue = platform_get_drvdata(pdev);
++	const struct dsps_musb_wrapper *wrp = glue->wrp;
++	void __iomem *reg_base = musb->ctrl_base;
++
++	if (musb->sof_enabled) {
++		musb->sof_enabled++;
++		return musb->sof_enabled;
++	}
++
++	musb->sof_enabled = 1;
++	musb_writeb(musb->mregs, MUSB_INTRUSBE, MUSB_INTR_SOF |
++		musb_readb(musb->mregs, MUSB_INTRUSBE));
++	musb_writel(reg_base, wrp->coreintr_set, MUSB_INTR_SOF |
++		musb_readl(reg_base, wrp->coreintr_set));
++
++	return musb->sof_enabled;
++}
++
++int dsps_disable_sof(struct musb *musb)
++{
++	struct device *dev = musb->controller;
++	struct platform_device *pdev = to_platform_device(dev->parent);
++	struct dsps_glue *glue = platform_get_drvdata(pdev);
++	const struct dsps_musb_wrapper *wrp = glue->wrp;
++	void __iomem *reg_base = musb->ctrl_base;
++	u8 intrusb;
++
++	if (musb->sof_enabled)
++		musb->sof_enabled--;
++
++	if (musb->sof_enabled)
++		return musb->sof_enabled;
++
++	intrusb = musb_readb(musb->mregs, MUSB_INTRUSBE);
++	intrusb &= ~MUSB_INTR_SOF;
++	musb_writeb(musb->mregs, MUSB_INTRUSBE, intrusb);
++	musb_writel(reg_base, wrp->coreintr_clear, MUSB_INTR_SOF);
++	musb->sof_enabled = 0;
++
++	return 0;
++}
++
+ static irqreturn_t dsps_interrupt(int irq, void *hci)
+ {
+ 	struct musb  *musb = hci;
+@@ -1033,6 +1079,9 @@ static struct musb_platform_ops dsps_ops = {
+ 	.disable	= dsps_musb_disable,
+ 
+ 	.try_idle	= dsps_musb_try_idle,
++
++	.enable_sof	= dsps_enable_sof,
++	.disable_sof	= dsps_disable_sof,
+ };
+ 
+ static u64 musb_dmamask = DMA_BIT_MASK(32);
+-- 
+1.7.0.4
+

@@ -1,0 +1,30 @@
+From ed12d8143934c4f8eebdc0703f6369020090273b Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Sun, 17 Mar 2013 17:12:12 +0530
+Subject: [PATCH 13/30] usb: musb: core: fixes rmmod modular crash in dma mode
+
+fixes the rmmod modular crash while removing musb_dsps.ko, due
+to null reference in parent device dma_mask introduce by patch
+with commit id (8d2421e6), fixes it by using musb->dev.dev_mask.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_core.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_core.c b/drivers/usb/musb/musb_core.c
+index 93373bf..28548cd 100644
+--- a/drivers/usb/musb/musb_core.c
++++ b/drivers/usb/musb/musb_core.c
+@@ -2057,7 +2057,7 @@ static int musb_remove(struct platform_device *pdev)
+ 	iounmap(ctrl_base);
+ 	device_init_wakeup(dev, 0);
+ #ifndef CONFIG_MUSB_PIO_ONLY
+-	dma_set_mask(dev, *dev->parent->dma_mask);
++	dma_set_mask(dev, *dev->dma_mask);
+ #endif
+ 	return 0;
+ }
+-- 
+1.7.0.4
+

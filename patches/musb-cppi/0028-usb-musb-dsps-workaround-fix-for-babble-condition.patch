@@ -1,0 +1,151 @@
+From 5acb20ef0148187f693977765311e4f342ecd14c Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Tue, 26 Mar 2013 22:09:11 +0530
+Subject: [PATCH 28/30] usb: musb: dsps: workaround fix for babble condition
+
+- when babble condition occured in host mode the
+  musb controller removes the session bit and drives
+  drvvbus to low and further musb controller is no longer
+  in host mode.
+- This patch workaround this issue by restarting the musb
+  controller by performing usbotgss controller reset, restart
+  usb phy, enable all interrupts and then starts the musb
+  session.
+- Since musb controller shutdown during babble, the
+  disconnect event generated through software to notify
+  the associated class driver.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_core.c |    7 ++++++
+ drivers/usb/musb/musb_core.h |    2 +
+ drivers/usb/musb/musb_dsps.c |   45 +++++++++++++++++++++++++++++++++++++++++-
+ 3 files changed, 53 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_core.c b/drivers/usb/musb/musb_core.c
+index 3f93526..39945e4 100644
+--- a/drivers/usb/musb/musb_core.c
++++ b/drivers/usb/musb/musb_core.c
+@@ -1514,6 +1514,13 @@ static int musb_core_init(u16 musb_type, struct musb *musb)
+ 	return 0;
+ }
+ 
++void musb_restart(struct musb *musb)
++{
++	ep_config_from_table(musb);
++	musb_start(musb);
++}
++EXPORT_SYMBOL_GPL(musb_restart);
++
+ /*-------------------------------------------------------------------------*/
+ 
+ /*
+diff --git a/drivers/usb/musb/musb_core.h b/drivers/usb/musb/musb_core.h
+index 6bb18de..a9ff080 100644
+--- a/drivers/usb/musb/musb_core.h
++++ b/drivers/usb/musb/musb_core.h
+@@ -316,6 +316,7 @@ struct musb {
+ 
+ 	irqreturn_t		(*isr)(int, void *);
+ 	struct work_struct	irq_work;
++	struct work_struct      work;
+ 	u16			hwvers;
+ 
+ 	u16			intrrxe;
+@@ -548,6 +549,7 @@ extern void musb_hnp_stop(struct musb *musb);
+ extern void musb_save_context(struct musb *musb);
+ extern void musb_restore_context(struct musb *musb);
+ extern void musb_gb_work(struct work_struct *data);
++extern void musb_restart(struct musb *musb);
+ 
+ static inline void musb_platform_set_vbus(struct musb *musb, int is_on)
+ {
+diff --git a/drivers/usb/musb/musb_dsps.c b/drivers/usb/musb/musb_dsps.c
+index c44a98c..79d5510 100644
+--- a/drivers/usb/musb/musb_dsps.c
++++ b/drivers/usb/musb/musb_dsps.c
+@@ -907,6 +907,7 @@ static irqreturn_t dsps_interrupt(int irq, void *hci)
+ 	unsigned long flags;
+ 	irqreturn_t ret = IRQ_NONE;
+ 	u32 epintr, usbintr;
++	u8 is_babble;
+ 
+ 	spin_lock_irqsave(&musb->lock, flags);
+ 
+@@ -937,9 +938,11 @@ static irqreturn_t dsps_interrupt(int irq, void *hci)
+ 	 * value but DEVCTL.BDEVICE is invalid without DEVCTL.SESSION set.
+ 	 * Also, DRVVBUS pulses for SRP (but not at 5V) ...
+ 	 */
+-	if (is_host_active(musb) && usbintr & MUSB_INTR_BABBLE) {
++	is_babble = is_host_active(musb) && usbintr & MUSB_INTR_BABBLE;
++	if (is_babble) {
+ 		pr_info("CAUTION: musb: Babble Interrupt Occurred\n");
+ 		musb->int_usb = MUSB_INTR_DISCONNECT;
++		is_babble = 1;
+ 	}
+ 
+ 	if (usbintr & ((1 << wrp->drvvbus) << wrp->usb_shift)) {
+@@ -990,6 +993,9 @@ static irqreturn_t dsps_interrupt(int irq, void *hci)
+ 	if (musb->int_tx || musb->int_rx || musb->int_usb)
+ 		ret |= musb_interrupt(musb);
+ 
++	if (is_babble)
++		schedule_work(&musb->work);
++
+  eoi:
+ 	/* EOI needs to be written for the IRQ to be re-asserted. */
+ 	if (ret == IRQ_HANDLED || epintr || usbintr)
+@@ -1005,6 +1011,42 @@ static irqreturn_t dsps_interrupt(int irq, void *hci)
+ 	return ret;
+ }
+ 
++static int dsps_musb_restart(struct musb *musb)
++{
++	struct device *dev = musb->controller;
++	struct platform_device *pdev = to_platform_device(dev);
++	struct dsps_glue *glue = dev_get_drvdata(dev->parent);
++	const struct dsps_musb_wrapper *wrp = glue->wrp;
++	void __iomem *reg_base = musb->ctrl_base;
++
++	/* Reset the musb */
++	dsps_writel(reg_base, wrp->control, (1 << wrp->reset));
++	udelay(100);
++
++	/* Stop the on-chip PHY and its PLL. */
++	musb_dsps_phy_control(glue, pdev->id, 0, false);
++	udelay(100);
++
++	/* Start the on-chip PHY and its PLL. */
++	musb_dsps_phy_control(glue, pdev->id, 1, false);
++	udelay(100);
++
++	/* reinit the endpoint fifo address */
++	musb_restart(musb);
++
++	return 0;
++}
++
++static void dsps_musb_restart_work(struct work_struct *work)
++{
++	struct musb *musb = container_of(work, struct musb, work);
++	struct platform_device *pdev = to_platform_device(musb->controller);
++
++	dev_dbg(musb->controller, "restarting musb%d ...\n",
++			pdev->id);
++	dsps_musb_restart(musb);
++}
++
+ static int dsps_musb_init(struct musb *musb)
+ {
+ 	struct device *dev = musb->controller;
+@@ -1032,6 +1074,7 @@ static int dsps_musb_init(struct musb *musb)
+ 	}
+ 
+ 	setup_timer(&glue->timer[pdev->id], otg_timer, (unsigned long) musb);
++	INIT_WORK(&musb->work, dsps_musb_restart_work);
+ 
+ 	/* Reset the musb */
+ 	dsps_writel(reg_base, wrp->control, (1 << wrp->reset));
+-- 
+1.7.0.4
+

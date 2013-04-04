@@ -1,0 +1,31 @@
+From d874930574a164ab8521817b5e71638682f63738 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Wed, 27 Mar 2013 18:26:36 +0530
+Subject: [PATCH 30/30] am335x: DT: adding comments to usb port-mode properties
+
+use port-mode properity of DT to force musb modes.
+set 1 for host only, 2 for device and 3 for otg mode.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ arch/arm/boot/dts/am33xx.dtsi |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
+index 193c0b1..466c768 100644
+--- a/arch/arm/boot/dts/am33xx.dtsi
++++ b/arch/arm/boot/dts/am33xx.dtsi
+@@ -392,8 +392,8 @@
+ 			multipoint = <1>;
+ 			num-eps = <16>;
+ 			ram-bits = <12>;
+-			port0-mode = <3>;
+-			port1-mode = <3>;
++			port0-mode = <3>;		/* 1: host only mode */
++			port1-mode = <3>;		/* 2: device & 3:otg */
+ 			power = <250>;
+ 			ti,hwmods = "usb_otg_hs";
+ 		};
+-- 
+1.7.0.4
+

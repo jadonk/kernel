@@ -1,0 +1,49 @@
+From e8fdc7328cef9908a4f78aaf9ce70c6311be7103 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Tue, 26 Mar 2013 14:15:59 +0530
+Subject: [PATCH 07/30] usb: musb: cppi41: fix for zlp handling for rx-dma channnel
+
+this fixes the actual received length for receive usb request,
+when zero length packet received, the dma updates rx-descriptor length
+to 1, but actual length received is zero.
+
+Signed-off-by: Bin Liu <b-liu@ti.com>
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/cppi41.h     |    1 +
+ drivers/usb/musb/cppi41_dma.c |    7 +++++++
+ 2 files changed, 8 insertions(+), 0 deletions(-)
+
+diff --git a/drivers/usb/musb/cppi41.h b/drivers/usb/musb/cppi41.h
+index 2e21260..ecc6d11 100644
+--- a/drivers/usb/musb/cppi41.h
++++ b/drivers/usb/musb/cppi41.h
+@@ -263,6 +263,7 @@ struct cppi41_host_buf_desc {
+ #define CPPI41_PKT_TYPE_USB		5
+ #define CPPI41_PKT_TYPE_GENERIC		6
+ #define CPPI41_PKT_TYPE_ETHERNET	7
++#define CPPI41_ZLP			(1 << 19)
+ #define CPPI41_RETURN_POLICY_SHIFT	15
+ #define CPPI41_RETURN_POLICY_MASK	(1 << CPPI41_RETURN_POLICY_SHIFT)
+ #define CPPI41_RETURN_LINKED		0
+diff --git a/drivers/usb/musb/cppi41_dma.c b/drivers/usb/musb/cppi41_dma.c
+index 2948905..220d364 100644
+--- a/drivers/usb/musb/cppi41_dma.c
++++ b/drivers/usb/musb/cppi41_dma.c
+@@ -1607,6 +1607,13 @@ static void usb_process_rx_bd(struct cppi41 *cppi,
+ 	ch_num = curr_pd->ch_num;
+ 	ep_num = curr_pd->ep_num;
+ 
++	/* the cppi41 dma will set received byte length as 1 when
++	 * zero length packet is received, fix this dummy byte by
++	 * setting acutal length received as zero
++	 */
++	if (curr_pd->hw_desc.pkt_info & CPPI41_ZLP)
++		length = 0;
++
+ 	rx_ch = &cppi->rx_cppi_ch[ch_num];
+ 	dev_dbg(dev, "Rx complete: dma channel(%d) ep%d len %d\n",
+ 		ch_num, ep_num, length);
+-- 
+1.7.0.4
+

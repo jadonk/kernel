@@ -1,0 +1,137 @@
+From 9deb455d0d355b4c084fcb0cca7fa621ff52a550 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 22 Mar 2013 15:35:34 +0530
+Subject: [PATCH 20/30] usb: musb: am335x: disable usb phy wakeup by default
+
+If USB PHY wakeup is enabled AM33XX will never enter DS0 state.This patch
+disables USB PHY wakeup by default. USB Phy wakeup can be enabled
+per controller instance using sysfs entries.
+
+Signed-off-by: George Cherian <george.cherian@ti.com>
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_core.c |    5 ++++-
+ drivers/usb/musb/musb_dsps.c |   38 ++++++++++++++++++++++++++++++--------
+ 2 files changed, 34 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_core.c b/drivers/usb/musb/musb_core.c
+index 2622c35..8bdd9c2 100644
+--- a/drivers/usb/musb/musb_core.c
++++ b/drivers/usb/musb/musb_core.c
+@@ -1940,11 +1940,13 @@ musb_init_controller(struct device *dev, int nIrq, void __iomem *ctrl)
+ 	/* FIXME this handles wakeup irqs wrong */
+ 	if (enable_irq_wake(nIrq) == 0) {
+ 		musb->irq_wake = 1;
+-		device_init_wakeup(dev, 1);
+ 	} else {
+ 		musb->irq_wake = 0;
+ 	}
+ 
++	/* initiliaze device wakeup for musb */
++	device_init_wakeup(dev, 1);
++
+ 	/* host side needs more setup */
+ 	hcd = musb_to_hcd(musb);
+ 	otg_set_host(musb->xceiv->otg, &hcd->self);
+@@ -1964,6 +1966,7 @@ musb_init_controller(struct device *dev, int nIrq, void __iomem *ctrl)
+ 	musb->xceiv->state = OTG_STATE_B_IDLE;
+ 
+ 	status = musb_gadget_setup(musb);
++	device_set_wakeup_enable(dev, 0);
+ 
+ 	if (status < 0)
+ 		goto fail3;
+diff --git a/drivers/usb/musb/musb_dsps.c b/drivers/usb/musb/musb_dsps.c
+index 57e1a98..cef66e0 100644
+--- a/drivers/usb/musb/musb_dsps.c
++++ b/drivers/usb/musb/musb_dsps.c
+@@ -686,9 +686,17 @@ static irqreturn_t cppi41dma_interrupt(int irq, void *hci)
+  * XXX: This function will be removed once we have a seperate driver for
+  * control module
+  */
+-static void musb_dsps_phy_control(struct dsps_glue *glue, u8 id, u8 on)
++static void musb_dsps_phy_control(struct dsps_glue *glue, u8 id, u8 on,
++		bool wake_up)
+ {
+ 	u32 usbphycfg;
++	u32 wkup_val, wkup_flag;
++	void __iomem *wkup_ctrl;
++
++#define	USB0_PHY_WKUP_OFFS		28
++#define	USB1_PHY_WKUP_OFFS		20
++#define	DSPS_USB0_WKUP_CTRL_ENABLE	(1 << 0)
++#define	DSPS_USB1_WKUP_CTRL_ENABLE	(1 << 8)
+ 
+ 	usbphycfg = readl(glue->usb_ctrl[id]);
+ 
+@@ -698,8 +706,20 @@ static void musb_dsps_phy_control(struct dsps_glue *glue, u8 id, u8 on)
+ 	} else {
+ 		usbphycfg |= USBPHY_CM_PWRDN | USBPHY_OTG_PWRDN;
+ 	}
+-
+ 	writel(usbphycfg, glue->usb_ctrl[id]);
++
++	wkup_ctrl = glue->usb_ctrl[id] + (id ? USB1_PHY_WKUP_OFFS :
++			USB0_PHY_WKUP_OFFS);
++	wkup_val = readl(wkup_ctrl);
++
++	wkup_flag = id ? DSPS_USB1_WKUP_CTRL_ENABLE :
++			DSPS_USB0_WKUP_CTRL_ENABLE;
++	if (wake_up)
++		wkup_val |= wkup_flag;
++	else
++		wkup_val &= ~wkup_flag;
++
++	writel(wkup_val, wkup_ctrl);
+ }
+ /**
+  * dsps_musb_enable - enable interrupts
+@@ -968,7 +988,7 @@ static int dsps_musb_init(struct musb *musb)
+ 	dsps_writel(reg_base, wrp->control, (1 << wrp->reset));
+ 
+ 	/* Start the on-chip PHY and its PLL. */
+-	musb_dsps_phy_control(glue, pdev->id, 1);
++	musb_dsps_phy_control(glue, pdev->id, 1, 0);
+ 
+ 	musb->isr = dsps_interrupt;
+ 
+@@ -996,7 +1016,7 @@ static int dsps_musb_exit(struct musb *musb)
+ 	del_timer_sync(&glue->timer[pdev->id]);
+ 
+ 	/* Shutdown the on-chip PHY and its PLL. */
+-	musb_dsps_phy_control(glue, pdev->id, 0);
++	musb_dsps_phy_control(glue, pdev->id, 0, 0);
+ 
+ 	/* NOP driver needs change if supporting dual instance */
+ 	usb_put_phy(musb->xceiv);
+@@ -1471,13 +1491,15 @@ static int dsps_suspend(struct device *dev)
+ 	struct platform_device *pdev = to_platform_device(dev->parent);
+ 	struct dsps_glue *glue = platform_get_drvdata(pdev);
+ 	const struct dsps_musb_wrapper *wrp = glue->wrp;
+-	int i;
++	int i, is_wkup;
+ 
+ 	/* save wrappers and cppi4.1 dma register */
+ 	dsps_save_context(glue);
+ 
+-	for (i = 0; i < wrp->instances; i++)
+-		musb_dsps_phy_control(glue, i, 0);
++	for (i = 0; i < wrp->instances; i++) {
++		is_wkup = device_may_wakeup(&glue->musb[i]->dev) ? true : false;
++		musb_dsps_phy_control(glue, i, 0, is_wkup);
++	}
+ 
+ 	return 0;
+ }
+@@ -1499,7 +1521,7 @@ static int dsps_resume(struct device *dev)
+ 	}
+ 
+ 	for (i = 0; i < wrp->instances; i++)
+-		musb_dsps_phy_control(glue, i, 1);
++		musb_dsps_phy_control(glue, i, 1, false);
+ 
+ 	/* restore wrappers and cppi4.1 dma register */
+ 	dsps_restore_context(glue);
+-- 
+1.7.0.4
+

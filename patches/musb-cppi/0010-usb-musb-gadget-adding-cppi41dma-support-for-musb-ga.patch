@@ -1,0 +1,46 @@
+From 4c503d95e4c6fd49e672c5ddcd103132920f8744 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 15 Mar 2013 20:36:06 +0530
+Subject: [PATCH 10/30] usb: musb: gadget: adding cppi41dma support for musb gadget stack
+
+enable the cppi41dma support for musb gadget stack
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_gadget.c |    6 ++++--
+ 1 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_gadget.c b/drivers/usb/musb/musb_gadget.c
+index 8767874..6128fa4 100644
+--- a/drivers/usb/musb/musb_gadget.c
++++ b/drivers/usb/musb/musb_gadget.c
+@@ -44,6 +44,7 @@
+ #include <linux/slab.h>
+ 
+ #include "musb_core.h"
++#include "musb_dma.h"
+ 
+ 
+ /* MUSB PERIPHERAL status 3-mar-2006:
+@@ -417,7 +418,7 @@ static void txstate(struct musb *musb, struct musb_request *req)
+ 			}
+ 		}
+ 
+-#elif defined(CONFIG_USB_TI_CPPI_DMA)
++#elif defined(CONFIG_USB_TI_CPPI_DMA) || defined(CONFIG_USB_TI_CPPI41_DMA)
+ 		/* program endpoint CSR first, then setup DMA */
+ 		csr &= ~(MUSB_TXCSR_P_UNDERRUN | MUSB_TXCSR_TXPKTRDY);
+ 		csr |= MUSB_TXCSR_DMAENAB | MUSB_TXCSR_DMAMODE |
+@@ -676,7 +677,8 @@ static void rxstate(struct musb *musb, struct musb_request *req)
+ 		return;
+ 	}
+ 
+-	if (is_cppi_enabled() && is_buffer_mapped(req)) {
++	if ((is_cppi_enabled() || is_cppi41_enabled())
++			&& is_buffer_mapped(req)) {
+ 		struct dma_controller	*c = musb->dma_controller;
+ 		struct dma_channel	*channel = musb_ep->dma;
+ 
+-- 
+1.7.0.4
+

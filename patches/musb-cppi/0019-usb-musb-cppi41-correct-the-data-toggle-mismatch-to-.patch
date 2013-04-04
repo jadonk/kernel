@@ -1,0 +1,118 @@
+From 0a3bfa149786ee381f18c88da75a126869a30bfb Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 22 Mar 2013 14:29:23 +0530
+Subject: [PATCH 19/30] usb: musb: cppi41: correct the data toggle mismatch to fix extra IN token issue
+
+Fixes extra IN token issue seen when a file is transferred from one pendrive
+to other. The same issue is also seen when a file is read from a usb pendrive
+and same time an usb wifi module is connected and its ip interface is up.
+
+Issue root caused to be with cppi41/xDMA corrupting the data toggle bit
+when multiple bus masters are accessing the mentor core register space.
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/cppi41_dma.c |   17 ++++++++++++++++-
+ drivers/usb/musb/musb_core.h  |    3 +++
+ drivers/usb/musb/musb_host.c  |   28 ++++++++++++++++++++++++++--
+ 3 files changed, 45 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/usb/musb/cppi41_dma.c b/drivers/usb/musb/cppi41_dma.c
+index 1f19ea5..0ed6a19 100644
+--- a/drivers/usb/musb/cppi41_dma.c
++++ b/drivers/usb/musb/cppi41_dma.c
+@@ -901,7 +901,22 @@ sched:
+ 		!rx_ch->inf_mode) {
+ 		void __iomem *epio = rx_ch->end_pt->regs;
+ 		u16 csr = musb_readw(epio, MUSB_RXCSR);
++		u8 curr_toggle = (csr & MUSB_RXCSR_H_DATATOGGLE) ? 1 : 0;
++
++		/* check if data toggle bit got out of sync */
++		if (curr_toggle == rx_ch->end_pt->prev_toggle) {
++			dev_dbg(musb->controller,
++				"Data toggle same as previous (=%d) on ep%d\n",
++					curr_toggle, rx_ch->end_pt->epnum);
++
++			csr |= MUSB_RXCSR_H_DATATOGGLE |
++					MUSB_RXCSR_H_WR_DATATOGGLE;
++			musb_writew(epio, MUSB_RXCSR, csr);
++			rx_ch->end_pt->prev_toggle = !curr_toggle;
++		} else
++			rx_ch->end_pt->prev_toggle = curr_toggle;
+ 
++		csr = musb_readw(epio, MUSB_RXCSR);
+ 		csr |= MUSB_RXCSR_H_REQPKT | MUSB_RXCSR_H_WZC_BITS;
+ 		musb_writew(epio, MUSB_RXCSR, csr);
+ 	}
+diff --git a/drivers/usb/musb/musb_core.h b/drivers/usb/musb/musb_core.h
+index de49ec2..bde35f6 100644
+--- a/drivers/usb/musb/musb_core.h
++++ b/drivers/usb/musb/musb_core.h
+@@ -263,6 +263,9 @@ struct musb_hw_ep {
+ 	/* peripheral side */
+ 	struct musb_ep		ep_in;			/* TX */
+ 	struct musb_ep		ep_out;			/* RX */
++
++	/* save rx toggle */
++	u8			prev_toggle;
+ };
+ 
+ static inline struct musb_request *next_in_request(struct musb_hw_ep *hw_ep)
+diff --git a/drivers/usb/musb/musb_host.c b/drivers/usb/musb/musb_host.c
+index 0a1f222..ead4796 100644
+--- a/drivers/usb/musb/musb_host.c
++++ b/drivers/usb/musb/musb_host.c
+@@ -322,7 +322,9 @@ __acquires(musb->lock)
+ static inline void musb_save_toggle(struct musb_qh *qh, int is_in,
+ 				    struct urb *urb)
+ {
++	struct musb		*musb = qh->hw_ep->musb;
+ 	void __iomem		*epio = qh->hw_ep->regs;
++	u8			curr_toggle;
+ 	u16			csr;
+ 
+ 	/*
+@@ -330,9 +332,24 @@ static inline void musb_save_toggle(struct musb_qh *qh, int is_in,
+ 	 * problems getting toggle correct.
+ 	 */
+ 
+-	if (is_in)
++	if (is_in) {
+ 		csr = musb_readw(epio, MUSB_RXCSR) & MUSB_RXCSR_H_DATATOGGLE;
+-	else
++		curr_toggle = csr ? 1 : 0;
++
++		/* check if data toggle has gone out of sync */
++		if (is_cppi41_enabled() && qh->hw_ep->rx_channel &&
++			curr_toggle == qh->hw_ep->prev_toggle) {
++			dev_dbg(musb->controller,
++				"Data toggle same as previous (=%d) on ep%d\n",
++					curr_toggle, qh->hw_ep->epnum);
++
++			csr = musb_readw(epio, MUSB_RXCSR);
++			csr |= MUSB_RXCSR_H_DATATOGGLE |
++					MUSB_RXCSR_H_WR_DATATOGGLE;
++			musb_writew(epio, MUSB_RXCSR, csr);
++			csr = 1;
++		}
++	} else
+ 		csr = musb_readw(epio, MUSB_TXCSR) & MUSB_TXCSR_H_DATATOGGLE;
+ 
+ 	usb_settoggle(urb->dev, qh->epnum, !is_in, csr ? 1 : 0);
+@@ -893,6 +910,13 @@ finish:
+ 			csr = musb_readw(hw_ep->regs, MUSB_RXCSR);
+ 
+ 			/*
++			 * Save the data toggle value which can be compared
++			 * later to see if data toggle goes out of sync
++			 */
++			hw_ep->prev_toggle = (csr &
++				MUSB_RXCSR_H_DATATOGGLE) ? 1 : 0;
++
++			/*
+ 			 * Unless caller treats short RX transfers as
+ 			 * errors, we dare not queue multiple transfers.
+ 			 */
+-- 
+1.7.0.4
+

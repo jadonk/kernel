@@ -1,0 +1,47 @@
+From 50d0d00d0476dc3655b7dcb5990bbe98c1cf6e38 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 15 Mar 2013 19:41:48 +0530
+Subject: [PATCH 09/30] usb: musb: core: adding cppi41 dma support for musb core
+
+- Adding cppi41dma support for musb core driver
+- adding is_cppi41_enabled() macro defintion
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_core.c |    2 +-
+ drivers/usb/musb/musb_dma.h  |    6 ++++++
+ 2 files changed, 7 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_core.c b/drivers/usb/musb/musb_core.c
+index 5834991..93373bf 100644
+--- a/drivers/usb/musb/musb_core.c
++++ b/drivers/usb/musb/musb_core.c
+@@ -1596,7 +1596,7 @@ void musb_dma_completion(struct musb *musb, u8 epnum, u8 transmit)
+ 
+ 	if (!epnum) {
+ #ifndef CONFIG_USB_TUSB_OMAP_DMA
+-		if (!is_cppi_enabled()) {
++		if (!is_cppi_enabled() && !is_cppi41_enabled()) {
+ 			/* endpoint 0 */
+ 			if (devctl & MUSB_DEVCTL_HM)
+ 				musb_h_ep0_irq(musb);
+diff --git a/drivers/usb/musb/musb_dma.h b/drivers/usb/musb/musb_dma.h
+index 1b6b827..d0a5952 100644
+--- a/drivers/usb/musb/musb_dma.h
++++ b/drivers/usb/musb/musb_dma.h
+@@ -74,6 +74,12 @@ struct musb_hw_ep;
+ #define	is_cppi_enabled()	0
+ #endif
+ 
++#ifdef CONFIG_USB_TI_CPPI41_DMA
++#define	is_cppi41_enabled()	1
++#else
++#define	is_cppi41_enabled()	0
++#endif
++
+ #ifdef CONFIG_USB_TUSB_OMAP_DMA
+ #define tusb_dma_omap()			1
+ #else
+-- 
+1.7.0.4
+

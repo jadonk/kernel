@@ -1,0 +1,29 @@
+From d15115be789f4011656e3e405ac41cdda966c4e9 Mon Sep 17 00:00:00 2001
+From: Ravi Babu <ravibabu@ti.com>
+Date: Fri, 8 Mar 2013 07:12:11 +0530
+Subject: [PATCH 01/30] usb: musb: am33xx: enable dual instance controller support for am33xx platform
+
+The am33xx platform has two instances of musb controller, enable the support
+for dual musb instances
+
+Signed-off-by: Ravi Babu <ravibabu@ti.com>
+---
+ drivers/usb/musb/musb_dsps.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/drivers/usb/musb/musb_dsps.c b/drivers/usb/musb/musb_dsps.c
+index 341a4b5..c8588a7 100644
+--- a/drivers/usb/musb/musb_dsps.c
++++ b/drivers/usb/musb/musb_dsps.c
+@@ -748,7 +748,7 @@ static const struct dsps_musb_wrapper ti81xx_driver_data = {
+ 	.rxep_bitmap		= (0xfffe << 16),
+ 	.musb_core_offset	= 0x400,
+ 	.poll_seconds		= 2,
+-	.instances		= 1,
++	.instances		= 2,
+ };
+ 
+ static const struct platform_device_id musb_dsps_id_table[] = {
+-- 
+1.7.0.4
+
