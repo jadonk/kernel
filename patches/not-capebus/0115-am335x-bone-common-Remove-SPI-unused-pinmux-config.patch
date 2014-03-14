@@ -1,14 +1,14 @@
-From bf297091cd5bd9b4eaded6baefa2a5b851251b1b Mon Sep 17 00:00:00 2001
+From 135a8b22932ef81ea283b78f775c4b9d145de142 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Thu, 7 Mar 2013 18:17:02 +0200
-Subject: [PATCH 115/118] am335x-bone-common: Remove SPI unused pinmux config
+Subject: [PATCH 115/184] am335x-bone-common: Remove SPI unused pinmux config
 
 Remove pinmux which is not used.
 The pinmux should be declared for a specific SPI configuration.
 
 Signed-off-by: Pantelis Antoniou <panto@antoniou-consulting.com>
 ---
- arch/arm/boot/dts/am335x-bone-common.dtsi | 8 --------
+ arch/arm/boot/dts/am335x-bone-common.dtsi |    8 --------
  1 file changed, 8 deletions(-)
 
 diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
@@ -31,5 +31,5 @@ index 23a8b01..816063c 100644
  			pinctrl-single,pins = <
  				0x54 0x7	/* gpmc_a5.gpio1_21, OUTPUT | MODE7 */
 -- 
-1.8.1.4
+1.7.9.5
 

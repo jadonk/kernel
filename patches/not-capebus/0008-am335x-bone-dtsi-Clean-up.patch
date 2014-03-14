@@ -1,7 +1,7 @@
-From be86f1fdc49609afd43673f8211f1c7d12b36e6a Mon Sep 17 00:00:00 2001
+From 8d0f64b2748e5a03e0c7d77ddf73f81f95c451d8 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Fri, 14 Dec 2012 14:34:08 +0200
-Subject: [PATCH 008/103] am335x-bone-dtsi: Clean up
+Subject: [PATCH 008/184] am335x-bone-dtsi: Clean up
 
 Clean up the common dtsi.
 
@@ -11,7 +11,7 @@ Conflicts:
 	arch/arm/boot/dts/am335x-bone-common.dtsi
 	arch/arm/boot/dts/am335x-bone.dts
 ---
- arch/arm/boot/dts/am335x-bone-common.dtsi | 80 +------------------------------
+ arch/arm/boot/dts/am335x-bone-common.dtsi |   80 +----------------------------
  1 file changed, 1 insertion(+), 79 deletions(-)
 
 diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
@@ -127,5 +127,5 @@ index 8295b30..b084324 100644
  	ti,edma-xbar-event-map = <32 12>;
  };
 -- 
-1.8.1.4
+1.7.9.5
 

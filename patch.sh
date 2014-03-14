@@ -1,5 +1,5 @@
 #!/bin/bash
-# (c) 2009 - 2012 Koen Kooi <koen@dominion.thruhere.net>
+# (c) 2009 - 2013 Koen Kooi <koen@dominion.thruhere.net>
 # (c) 2012 Robert Nelson <robertcnelson@gmail.com>
 # This script will take a set of directories with patches and make a git tree out of it
 # After all the patches are applied it will output a SRC_URI fragment you can copy/paste into a recipe
@@ -17,14 +17,14 @@ RECIPENAME="linux-mainline_3.8.bb"
 RECIPEFILE="${DIR}/recipes/${RECIPENAME}"
 
 #For TAG, use mainline Kernel tags
-TAG="v3.8.2"
+TAG="v3.8.13"
 EXTRATAG=""
 
 EXTERNAL_TREE="git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git"
 EXTERNAL_BRANCH="linux-3.8.y"
-EXTERNAL_SHA="19b00d2dc9bedf0856e366cb7b9c7733ded659e4"
+EXTERNAL_SHA="dbf932a9b316d5b29b3e220e5a30e7a165ad2992"
 
-PATCHSET="dma rtc pinctrl cpufreq adc i2c da8xx-fb pwm mmc crypto 6lowpan capebus arm omap omap_sakoman omap_beagle_expansion omap_beagle omap_panda net drm not-capebus pru usb PG2 reboot iio w1 gpmc"
+PATCHSET="dma rtc pinctrl cpufreq adc i2c da8xx-fb pwm mmc crypto 6lowpan capebus arm omap omap_sakoman omap_beagle_expansion omap_beagle omap_panda net drm not-capebus pru usb PG2 reboot iio w1 gpmc mxt ssd130x build hdmi audio resetctrl camera resources pmic pps leds capes proto fixes machinekit"
 
 git_kernel_stable () {
 	git pull git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git master --tags || true
@@ -71,8 +71,8 @@ fi
 git describe
 
 # newer gits will run 'git gc' after every patch if you don't prune
-git gc
-git prune
+#git gc
+#git prune
 
 if [ -d ${EXPORTPATH} ] ; then
 	rm -rf ${EXPORTPATH} || true
@@ -120,13 +120,27 @@ for patchset in ${PATCHSET} ; do
 	done
 done
 
+mkdir -p ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}
+
 echo '	file://defconfig \' >> ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPENAME}
 echo '  file://am335x-pm-firmware.bin \' >> ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPENAME}
+
+if [ -e ${DIR}/logo_linux_clut224.ppm ] ; then
+	cp ${DIR}/logo_linux_clut224.ppm ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}/
+	echo '  file://logo_linux_clut224.ppm \' >> ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPENAME}
+fi
+
 echo "\"" >> ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPENAME}
 
-mkdir -p ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}
 cp -a ${EXPORTPATH}/* ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}/
 
-if [ -e ${DIR}/kernel/.config ] ; then
-	cp ${DIR}/kernel/.config ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}/defconfig
+mkdir -p ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}/beaglebone
+cp ${DIR}/configs/beaglebone ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}/beaglebone/defconfig
+
+mkdir -p ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}/beagleboard
+cp ${DIR}/configs/beagleboard ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}/beagleboard/defconfig
+
+if [ -e ${DIR}/kernel/am335x-pm-firmware.bin ] ; then
+	cp ${DIR}/kernel/am335x-pm-firmware.bin ${EXPORTPATH}-oe/recipes-kernel/linux/${RECIPEDIR}/
 fi
+

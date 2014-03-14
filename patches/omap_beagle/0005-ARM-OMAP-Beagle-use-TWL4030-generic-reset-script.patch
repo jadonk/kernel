@@ -1,4 +1,4 @@
-From 083e28ffb0342e2b225f6653d41797dd14ad1f2e Mon Sep 17 00:00:00 2001
+From 89466f67c52b776d24da8e1f7792e0697945379d Mon Sep 17 00:00:00 2001
 From: Robert Nelson <robertcnelson@gmail.com>
 Date: Thu, 24 Jan 2013 09:43:51 -0600
 Subject: [PATCH 5/5] ARM: OMAP: Beagle: use TWL4030 generic reset script
@@ -8,7 +8,7 @@ Beagle (Bx/Cx) will not hang on reboot when running at 125 Mhz.
 
 Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
 ---
- arch/arm/mach-omap2/board-omap3beagle.c | 2 +-
+ arch/arm/mach-omap2/board-omap3beagle.c |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/mach-omap2/board-omap3beagle.c b/arch/arm/mach-omap2/board-omap3beagle.c
@@ -25,5 +25,5 @@ index cdc77c5..20b4e1b 100644
  
  	beagle_twldata.vpll2->constraints.name = "VDVI";
 -- 
-1.8.1.4
+1.7.9.5
 

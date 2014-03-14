@@ -1,19 +1,19 @@
-From aeed4b306e7f3b41dc9cf62d78ef791b3cc9ffe7 Mon Sep 17 00:00:00 2001
+From 2896e59ebc3e3037e7db22248d4184dc64c99c8e Mon Sep 17 00:00:00 2001
 From: Koen Kooi <koen@dominion.thruhere.net>
 Date: Tue, 22 Jan 2013 17:52:18 +0100
 Subject: [PATCH] beaglebone black: 1ghz hack
 
 Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
 ---
- arch/arm/boot/dts/am335x-bonelt.dts | 16 ++++++++++++++++
- arch/arm/boot/dts/am33xx.dtsi       |  2 +-
+ arch/arm/boot/dts/am335x-boneblack.dts |   16 ++++++++++++++++
+ arch/arm/boot/dts/am33xx.dtsi          |    2 +-
  2 files changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/am335x-bonelt.dts b/arch/arm/boot/dts/am335x-bonelt.dts
-index e88723c..fdcbb60 100644
---- a/arch/arm/boot/dts/am335x-bonelt.dts
-+++ b/arch/arm/boot/dts/am335x-bonelt.dts
-@@ -33,3 +33,19 @@
+diff --git a/arch/arm/boot/dts/am335x-boneblack.dts b/arch/arm/boot/dts/am335x-boneblack.dts
+index 5434bfd..1abf267 100644
+--- a/arch/arm/boot/dts/am335x-boneblack.dts
++++ b/arch/arm/boot/dts/am335x-boneblack.dts
+@@ -43,3 +43,19 @@
  	status = "okay";
  };
  
@@ -34,7 +34,7 @@ index e88723c..fdcbb60 100644
 +};
 +
 diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
-index 1d27635..119ce8d 100644
+index 6b71632..6c24c9b 100644
 --- a/arch/arm/boot/dts/am33xx.dtsi
 +++ b/arch/arm/boot/dts/am33xx.dtsi
 @@ -24,7 +24,7 @@
@@ -47,5 +47,5 @@ index 1d27635..119ce8d 100644
  
  			/*
 -- 
-1.8.1.4
+1.7.9.5
 

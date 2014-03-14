@@ -1,14 +1,14 @@
-From 014fdbf220198424844df3d43ca5252bcfe01e9e Mon Sep 17 00:00:00 2001
+From 133616c002d5b66c5b6d14b5de742d9ceb4f57e6 Mon Sep 17 00:00:00 2001
 From: Matt Porter <mporter@ti.com>
 Date: Thu, 20 Sep 2012 09:21:16 -0400
-Subject: [PATCH 25/34] spi: omap2-mcspi: add generic DMA request support to
+Subject: [PATCH 25/35] spi: omap2-mcspi: add generic DMA request support to
  the DT binding
 
 The binding definition is based on the generic DMA request binding.
 
 Signed-off-by: Matt Porter <mporter@ti.com>
 ---
- Documentation/devicetree/bindings/spi/omap-spi.txt | 28 +++++++++++++++++++++-
+ Documentation/devicetree/bindings/spi/omap-spi.txt |   28 +++++++++++++++++++-
  1 file changed, 27 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/spi/omap-spi.txt b/Documentation/devicetree/bindings/spi/omap-spi.txt
@@ -55,5 +55,5 @@ index 938809c..3bd8eed 100644
 +};
 +
 -- 
-1.8.1.4
+1.7.9.5
 

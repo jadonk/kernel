@@ -1,13 +1,13 @@
-From bc71f08658fc5847841e6fb7c81f02b4f718eb87 Mon Sep 17 00:00:00 2001
+From 8e5f56a7f4e753679e06869a65c719580cd085b4 Mon Sep 17 00:00:00 2001
 From: Pantelis Antoniou <panto@antoniou-consulting.com>
 Date: Mon, 7 Jan 2013 19:43:11 +0200
-Subject: [PATCH 031/103] capemgr: Add beaglebone's cape driver bindings
+Subject: [PATCH 031/184] capemgr: Add beaglebone's cape driver bindings
 
 Document the beaglebone's cape driver bindings.
 
 Signed-off-by: Pantelis Antoniou <panto@antoniou-consulting.com>
 ---
- .../devicetree/bindings/misc/capes-beaglebone.txt  | 110 +++++++++++++++++++++
+ .../devicetree/bindings/misc/capes-beaglebone.txt  |  110 ++++++++++++++++++++
  1 file changed, 110 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/misc/capes-beaglebone.txt
 
@@ -128,5 +128,5 @@ index 0000000..f73cab5
 +};
 +	
 -- 
-1.8.1.4
+1.7.9.5
 
